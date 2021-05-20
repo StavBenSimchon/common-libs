@@ -1,7 +1,7 @@
 package org.finovation
 class Brands{
   String test
-  A(String test){
+  Brands(String test){
     this.test 
   }
   public run(){
