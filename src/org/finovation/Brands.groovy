@@ -1,5 +1,5 @@
 package org.finovation
-class A{
+class Brands{
   String test
   A(String test){
     this.test 

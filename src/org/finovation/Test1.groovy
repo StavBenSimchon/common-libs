@@ -1,8 +1,8 @@
 package org.finovation
 
-class Utilities implements Serializable {
+class Test1 implements Serializable {
   def steps
-  Utilities(steps) {this.steps = steps}
+  Test1(steps) {this.steps = steps}
   def sh(cmd) {
     steps.sh "${cmd}"
   }
