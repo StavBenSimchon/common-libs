@@ -1,5 +1,5 @@
 package org.finovation
 
-Class Bar {
+Class Point {
   String a
 }
