@@ -1,5 +1,5 @@
 package org.finovation
 
-Class Barz {
+Class Bar {
   String a
 }
