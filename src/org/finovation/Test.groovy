@@ -1,4 +1,4 @@
-package org.foo
+package org.finovation
 def hello(){
   echo "hello"
 }
