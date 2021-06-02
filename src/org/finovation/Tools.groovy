@@ -8,6 +8,6 @@ class Tools implements Serializable {
         steps.echo msg
     }
     void myEnv() {
-        steps.echo "env"
+        steps.sh "env"
     }
 }
