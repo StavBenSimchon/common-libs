@@ -7,9 +7,7 @@ def test2(){
   echo "testing 2"
 }
 def envP(){
-  sh '''
-    env
-  '''
+  sh ' echo "heyyyy"'
 }
 
 return this
