@@ -6,5 +6,10 @@ def test(){
 def test2(){
   echo "testing 2"
 }
+def envP(){
+  sh '''
+    env
+  '''
+}
 
 return this
