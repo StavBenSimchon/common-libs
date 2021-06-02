@@ -9,5 +9,8 @@ def test2(){
 def gg(repo){
   git url: "${repo}"
 }
+def envP(){
+  sh 'env'
+}
 
 return this
