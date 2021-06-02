@@ -6,6 +6,8 @@ def test(){
 def test2(){
   echo "testing 2"
 }
+
+// needs context
 def gg(repo){
   git url: "${repo}"
 }
