@@ -7,4 +7,7 @@ class Tools implements Serializable {
     void myEcho(String msg) {
         steps.echo msg
     }
+    void myEnv() {
+        steps.echo "env"
+    }
 }
