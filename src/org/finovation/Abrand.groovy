@@ -4,8 +4,3 @@ class Abrand {
   Abrand(){
   }
 }
-class Bbrand {
-  float x,y,z
-  Bbrand(){
-  }
-}
