@@ -1,0 +1,24 @@
+@Library('ci') _
+welcome.info 'starting'
+import org.finovation.Brand
+def b = new Brand()
+
+def utl = new org.finovation.Util()
+utl.test()
+utl.test2()
+
+import org.finovation.Tools
+def tools = new Tools(this)
+println tools
+tools.myEcho("hey")
+
+def dop = new Dop()
+println dop
+
+
+node {
+    // utl.gg("git@github.com:StavBenSimchon/tes1.git")
+    // utl.envP()
+    // tools.myEnv()
+    
+}
