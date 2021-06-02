@@ -7,6 +7,7 @@ class Tools implements Serializable {
     void myEcho(String msg) {
         steps.echo msg
     }
+    // this wont work outside context block like node{} or pipeline steps
     void myEnv() {
         steps.sh "env"
     }
