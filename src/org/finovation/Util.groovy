@@ -6,8 +6,8 @@ def test(){
 def test2(){
   echo "testing 2"
 }
-def envP(){
-  sh ' echo "heyyyy"'
+def envP(s){
+  s.sh ' echo "heyyyy"'
 }
 
 return this
