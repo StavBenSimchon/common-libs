@@ -6,8 +6,8 @@ def test(){
 def test2(){
   echo "testing 2"
 }
-def envP(s){
-  s.sh ' echo "heyyyy"'
+def gg(repo){
+  git url: "${repo}"
 }
 
 return this
