@@ -1,5 +1,5 @@
 package org.foo
-
+production='production'
 def test(){
   echo "testing"
 }
@@ -14,5 +14,7 @@ def gg(repo){
 def envP(){
   sh 'env'
 }
-
+String getProductionTag(){
+  return production
+}
 return this
