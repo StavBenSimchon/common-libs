@@ -17,7 +17,7 @@ def envP(){
 String getProductionTag(){
   return production
 }
-String getProductionTag(){
+String getProductionTag2(){
   return "production"
 }
 return this

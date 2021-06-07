@@ -6,6 +6,7 @@ def b = new Brand()
 def utl = new org.finovation.Util()
 utl.test()
 utl.test2()
+println utl.getProductionTag2()
 println utl.getProductionTag()
 
 import org.finovation.Tools
