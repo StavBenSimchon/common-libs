@@ -6,3 +6,8 @@
 //     this.steps = steps
 //   }
 // }
+package org.examples
+class Brands {
+    Brands() {
+    }
+}
