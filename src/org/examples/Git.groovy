@@ -1,8 +1,8 @@
 package org.examples
 
-Class Git implements Serializable{
+Class GitClient implements Serializable{
   def steps
-  Git(steps){
+  GitClient(steps){
     this.steps = steps
   }
 }
