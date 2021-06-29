@@ -7,7 +7,6 @@ def utl = new org.finovation.Util()
 utl.test()
 utl.test2()
 println utl.getProductionTag2()
-println utl.getProductionTag()
 
 import org.finovation.Tools
 def tools = new Tools(this)
@@ -17,6 +16,9 @@ tools.myEcho("hey")
 def dop = new Dop()
 println dop
 
+import org.finovation.Conf
+def c = new Conf()
+println c.
 
 node {
     // utl.gg("git@github.com:StavBenSimchon/tes1.git")
