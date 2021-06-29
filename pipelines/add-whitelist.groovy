@@ -1,9 +1,9 @@
 @Library("ci@dev") _
-import org.examples.Brands
-import org.examples.Git
+import org.examples.BrandsTool
+import org.examples.GitClient
 import org.examples.JiraClient
-def b = new BrandS()
-def g = new Git()
+def b = new BrandsTool()
+def g = new GitClient()
 def jc = new JiraClient()
 node {
   stage('init'){
