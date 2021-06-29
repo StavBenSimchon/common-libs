@@ -7,7 +7,9 @@
 //   }
 // }
 package org.examples
-class Brands {
-    Brands() {
-    }
+class Brands implements Serializable {
+  def steps
+  Brands(steps) {
+    this.steps=steps
+  }
 }
