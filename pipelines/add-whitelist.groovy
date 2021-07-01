@@ -11,7 +11,7 @@ node {
   stage('init'){
     sh """
     mkdir -p ./test/
-    touch ./test/y.yaml
+    touch ./y.yml
     """
   
   }

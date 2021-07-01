@@ -7,22 +7,7 @@ class Brands implements Serializable {
     this.steps=steps
   }
   def parseYaml(){
-def yamlFile = new File("sample.yml")
-// with YAML contents.
-yamlFile.write('''\
----
-sample: true
-Groovy: "Rocks!"
-''')
- 
-// Using File.withReader,
-// so reader is closed by Groovy automatically.
-yamlFile.withReader { reader ->
-    // Use parse method of YamlSlurper.
-    def yaml = new YamlSlurper().parse(reader)
-     
-    assert yaml.sample
-    assert yaml.Groovy == 'Rocks!'
-}
+    data = readYaml file: "y.yml"
+    scan_path = data[scan_path]
   }
 }
