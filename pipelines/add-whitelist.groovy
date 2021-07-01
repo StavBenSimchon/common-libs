@@ -6,8 +6,13 @@ import org.examples.GitClient
 def g = new GitClient(this)
 import org.examples.JiraClient
 def jc = new JiraClient(this)
+
 node {
   stage('init'){
-    echo "hey"
+    sh """
+    mkdir -p ./test/
+    touch ./test/y.yaml
+    """
+  
   }
 }
