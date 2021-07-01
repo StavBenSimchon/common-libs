@@ -10,9 +10,11 @@ def jc = new JiraClient(this)
 node {
   stage('init'){
     sh """
-    mkdir -p ./test/
-    touch ./y.yml
+    #mkdir -p ./test/
+    echo 'a: 5' > ./y.yml
+    ls -al
+    cat ./y.yml
     """
-  
+    b.parseYaml
   }
 }
