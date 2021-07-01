@@ -15,6 +15,8 @@ node {
     ls -al
     cat ./y.yml
     """
+    def methods = Brands.declaredMethods.findAll { !it.synthetic }.name
+    println methods
     b.parseYaml
   }
 }
