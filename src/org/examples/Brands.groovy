@@ -1,5 +1,4 @@
 package org.examples
-import groovy.yaml.YamlSlurper
 
 class Brands implements Serializable {
   def steps
