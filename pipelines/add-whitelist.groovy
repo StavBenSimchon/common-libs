@@ -17,6 +17,6 @@ node {
     """
     def methods = Brands.declaredMethods.findAll { !it.synthetic }.name
     println methods
-    b.parseYaml
+    b.parseYaml()
   }
 }
