@@ -12,10 +12,10 @@ class WhitelistUpdater implements Serializable {
     this.brandConfig = steps.readYaml file: fp
   }
   void validateIP(String IP){
+    String regex = /^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$/
+    this.steps.echo "${IP.contains('/')}"
     if(IP.contains('/')){
       String regex = /^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+\/[0-9]+$/
-    } else {
-      String regex = /^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$/
     }
     if (! IP ==~ regex) {                                                          
         throw new RuntimeException("ip is not good")
