@@ -30,6 +30,7 @@ node {
     """
     // def methods = Brands.declaredMethods.findAll { !it.synthetic }.name
     // println methods
+    wl.validateIPListMultiLineText(IPS)
     def datas = readYaml file: 'y.yml'
     // echo "here $datas.a $datas.getClass()"
     def obj =  b.parseYaml() 

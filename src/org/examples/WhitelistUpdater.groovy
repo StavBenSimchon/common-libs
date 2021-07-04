@@ -27,7 +27,8 @@ class WhitelistUpdater implements Serializable {
     }
   }
   private void validateIPListMultiLineText(String input){
-    // List<String> ipList = in.tokenize('\n')
+    List<String> ipList = input.tokenize('\n')
+    validateIPList(ipList)
   }
   void addWhitelistIP(String ip){
     // this.brandConfig[]
