@@ -6,8 +6,6 @@ def b = new Brands(this)
 // def g = new GitClient(this)
 // import org.examples.JiraClient
 // def jc = new JiraClient(this)
-
-
 node {
   stage('init'){
     sh """
