@@ -1,13 +1,13 @@
 @Library("ci@dev") _
 // import org.finovation.Tools
 import org.examples.Brands
-import org.examples.WhitelistUpdater
+import org.examples.FUpdater
 // import org.examples.GitClient
 // def g = new GitClient(this)
 // import org.examples.JiraClient
 // def jc = new JiraClient(this)
-def wl = new WhitelistUpdater(this, 'chalse')
 node {
+def wl = new FUpdater(this, 'chalse')
 def b = new Brands(this)
   stage('init'){
     sh """
