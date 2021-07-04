@@ -1,10 +1,10 @@
 package org.examples
 
-class WhitelistUpdater implements Serializable {
+class FUpdater implements Serializable {
   def steps
   def brandConfig
   def brand
-  WhitelistUpdater(steps, brand) {
+  FUpdater(steps, brand) {
     this.steps=steps
     this.brand = brand
   }
