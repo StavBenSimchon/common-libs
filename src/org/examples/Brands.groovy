@@ -6,8 +6,8 @@ class Brands implements Serializable {
     this.steps=steps
   }
   def parseYaml(){
-    // data = steps.readYaml file: "y.yml"
-    // return data
+    data = steps.readYaml file: "y.yml"
+    return data
     // scan_path = data[scan_path]
   }
 }
