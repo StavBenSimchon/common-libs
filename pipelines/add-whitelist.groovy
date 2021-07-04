@@ -16,8 +16,8 @@ def b = new Brands(this)
     """
     def methods = Brands.declaredMethods.findAll { !it.synthetic }.name
     println methods
-    println b.parseYaml()
     def datas = readYaml file: 'y.yml'
     echo "here $datas"
+    println b.parseYaml() 
   }
 }
