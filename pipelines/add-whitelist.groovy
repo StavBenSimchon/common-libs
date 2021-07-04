@@ -18,6 +18,6 @@ def b = new Brands(this)
     println methods
     println b.parseYaml()
     def datas = readYaml file: 'y.yml'
-    println datas
+    echo "here $datas"
   }
 }
