@@ -10,7 +10,10 @@ def b = new Brands(this)
   stage('init'){
     sh """
     #mkdir -p ./test/
-    echo 'a: 5' > ./y.yml
+    echo '
+    a: 
+    - 5.5.5.5/32
+    - 6.6.6.6/30' > ./y.yml
     ls -al
     cat ./y.yml
     """
@@ -18,6 +21,7 @@ def b = new Brands(this)
     println methods
     def datas = readYaml file: 'y.yml'
     echo "here $datas.a $datas.getClass()"
-    println b.parseYaml() 
+    def obj =  b.parseYaml() 
+    println obj
   }
 }
