@@ -13,11 +13,12 @@ class WhitelistUpdater implements Serializable {
   }
   void validateIP(String IP){
     String regex = /^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$/
-    this.steps.echo "${IP.contains('/')}"
+    this.steps.echo ">>1 ${IP.contains('/')}"
     if(IP.contains('/')){
+      this.steps.echo ">>3"
       regex = /^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+\/[0-9]+$/
     }
-    this.steps.echo "${regex}"
+    this.steps.echo ">>2 ${regex}"
     if (! IP ==~ regex) {                                                          
         throw new RuntimeException("ip is not good")
     } 
