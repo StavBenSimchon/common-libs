@@ -16,7 +16,7 @@ def b = new Brands(this)
     """
     def methods = Brands.declaredMethods.findAll { !it.synthetic }.name
     println methods
-    // def datas = readYaml file: 'y.yml'
+    def datas = readYaml file: 'y.yml'
     // echo "here $datas.a $datas.getClass()"
     // println b.parseYaml() 
   }
