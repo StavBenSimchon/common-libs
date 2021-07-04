@@ -7,8 +7,8 @@ import org.examples.WhitelistUpdater
 // import org.examples.JiraClient
 // def jc = new JiraClient(this)
 def b = new Brands(this)
-node {
 def wl = new WhitelistUpdater(this, 'chalse')
+node {
   stage('init'){
     sh """
     #mkdir -p ./test/
