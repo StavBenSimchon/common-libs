@@ -9,6 +9,15 @@ import org.examples.WhitelistUpdater
 def b = new Brands(this)
 def wl = new WhitelistUpdater(this, 'chalse')
 node {
+    properties(
+    [
+        parameters(
+            [string(name: 'IPS'),
+             string( name: 'TICKET')]
+            )
+
+    ]
+    )    
   stage('init'){
     sh """
     #mkdir -p ./test/
