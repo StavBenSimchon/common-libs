@@ -22,7 +22,7 @@ class WhitelistUpdater implements Serializable {
     } 
   }
   private void validateIPList(List<String> IPs){
-    ips.each{ ip ->
+    IPs.each{ ip ->
       validateIP(ip)
     }
   }
