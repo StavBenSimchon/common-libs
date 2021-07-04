@@ -27,9 +27,9 @@ def b = new Brands(this)
       echo "contains"
     } else{
       echo "not contains"
-      boolean fileSuccessfullyDeleted =  new File('z.yml').delete()
+      // boolean fileSuccessfullyDeleted =  new File('z.yml').delete()
       obj['a'].add("7.7.7.7/29")
-      writeYaml file: 'z.yml', data: obj
+      writeYaml file: 'z.yml', data: obj, overwrite: true
       sh '''
         cat ./z.yml
       '''
