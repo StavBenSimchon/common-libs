@@ -23,5 +23,15 @@ def b = new Brands(this)
     echo "here $datas.a $datas.getClass()"
     def obj =  b.parseYaml() 
     println obj
+    if (obj['a'].contains("5.5.5.5/32")){
+      echo "contains"
+    } else{
+      echo "not contains"
+      obj['a'].add("7.7.7.7/29")
+      writeYaml file: 'z.yml', data: obj
+      sh '''
+        cat ./z.yml
+      '''
+    }
   }
 }
