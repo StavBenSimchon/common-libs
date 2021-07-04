@@ -12,7 +12,7 @@ node {
     properties(
     [
         parameters(
-            [string(name: 'IPS'),
+            [text(name: 'IPS'),
              string( name: 'TICKET')]
             )
 
