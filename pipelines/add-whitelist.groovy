@@ -23,7 +23,7 @@ def b = new Brands(this)
     echo "here $datas.a $datas.getClass()"
     def obj =  b.parseYaml() 
     println obj
-    if (obj['a'].contains("5.5.5.5/32")){
+    if (obj['a'].contains("7.7.7.7/29")){
       echo "contains"
     } else{
       echo "not contains"
