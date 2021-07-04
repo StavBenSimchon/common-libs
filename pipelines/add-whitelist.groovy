@@ -20,7 +20,7 @@ def b = new Brands(this)
     // def methods = Brands.declaredMethods.findAll { !it.synthetic }.name
     // println methods
     def datas = readYaml file: 'y.yml'
-    echo "here $datas.a $datas.getClass()"
+    // echo "here $datas.a $datas.getClass()"
     def obj =  b.parseYaml() 
     println obj
     if (obj['a'].contains("7.7.7.7/29")){
