@@ -7,6 +7,7 @@ def b = new Brands(this)
 // import org.examples.JiraClient
 // def jc = new JiraClient(this)
 
+
 node {
   stage('init'){
     sh """
