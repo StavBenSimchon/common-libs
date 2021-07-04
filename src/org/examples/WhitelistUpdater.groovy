@@ -17,6 +17,7 @@ class WhitelistUpdater implements Serializable {
     if(IP.contains('/')){
       regex = /^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+\/[0-9]+$/
     }
+    this.steps.echo "${regex}"
     if (! IP ==~ regex) {                                                          
         throw new RuntimeException("ip is not good")
     } 
