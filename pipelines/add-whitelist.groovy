@@ -17,8 +17,8 @@ def b = new Brands(this)
     ls -al
     cat ./y.yml
     """
-    def methods = Brands.declaredMethods.findAll { !it.synthetic }.name
-    println methods
+    // def methods = Brands.declaredMethods.findAll { !it.synthetic }.name
+    // println methods
     def datas = readYaml file: 'y.yml'
     echo "here $datas.a $datas.getClass()"
     def obj =  b.parseYaml() 
