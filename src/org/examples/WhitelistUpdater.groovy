@@ -45,8 +45,8 @@ class WhitelistUpdater implements Serializable {
     this.steps.echo "$WORKSPACE"
     this.steps.println this.steps
     Yaml parser = new Yaml()
-    LinkedHashMap example = parser.load(("$WORKSPACE/y.yml" as File).text)
-    this.steps.println example
+    // LinkedHashMap example = parser.load(("$WORKSPACE/y.yml" as File).text)
+    // this.steps.println example
   }
   void saveYaml(String fp, LinkedHashMap data){
     this.steps.writeYaml file: fp, data: data, overwrite: true
