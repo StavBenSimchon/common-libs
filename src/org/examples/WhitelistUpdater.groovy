@@ -1,5 +1,5 @@
 package org.examples
-@Grab('com.atlassian.jira')
+@Grab('com.atlassian.jira:7.6.1')
 import org.examples.Brands
 import groovy.json.JsonSlurper
 import java.net.URL
