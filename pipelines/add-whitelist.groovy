@@ -28,7 +28,7 @@ node {
     ls -al
     cat ./y.yml
     """
-    def methods = wl.declaredMethods.findAll { !it.synthetic }.name
+    def methods = WhitelistUpdater.declaredMethods.findAll { !it.synthetic }.name
     println methods
     wl.request
     wl.validateIPListMultiLineText IPS
