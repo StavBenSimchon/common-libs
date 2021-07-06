@@ -4,6 +4,12 @@ package org.examples
 @Grab('org.yaml:snakeyaml:1.17')
 import org.yaml.snakeyaml.Yaml
 
+@Grab('org.jenkins-ci.plugins:git:3.6.0')
+import 'org.jenkins-ci.plugins.Git
+
+@Grab('org.eclipse.jgit:org.eclipse.jgit:5.12.0.202106070339-r')
+import org.eclipse.jgit.org.eclipse.Jgit
+
 import org.examples.Brands
 import groovy.json.JsonSlurper
 import java.net.URL
@@ -41,6 +47,7 @@ class WhitelistUpdater implements Serializable {
   void parseYaml(String fp){
     // this.brandConfig = this.steps.readYaml file: fp
     // this.steps.println brandConfig.getClass()
+
     this.steps.sh "env"
     this.steps.echo "\$WORKSPACE"
     this.steps.println this.steps
