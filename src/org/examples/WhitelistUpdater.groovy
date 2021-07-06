@@ -15,6 +15,9 @@ class WhitelistUpdater implements Serializable {
   void request(){
     String res = new URL("https://api.openweathermap.org/data/2.5/weather?q=Jerusalem&appid=a4a8af163a68289070abec5d1738cbca").getText()
     this.steps.println res
+    def card = new JsonSlurper().parseText(res)
+    this.steps.println card
+
     // def get = new URL("http://api.openweathermap.org/data/2.5/weather?q=a&appid=a").openConnection();
     // def getRC = get.getResponseCode();
     // this.steps.println(getRC);
