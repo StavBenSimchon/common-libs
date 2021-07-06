@@ -11,8 +11,8 @@ import org.yaml.snakeyaml.Yaml
 @Grab('com.atlassian.jira:jira-rest-java-client-api')
 import com.atlassian.jira.rest.client.api.JiraRestClient
 
-@Grab('org.eclipse:jgit')
-// import org.eclipse.jgit.org.eclipse.jgit
+@Grab('org.eclipse.jgit:org.eclipse.jgit.ant')
+// import org.eclipse.jgit
 
 import org.examples.Brands
 import groovy.json.JsonSlurper
