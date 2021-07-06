@@ -1,6 +1,7 @@
 package org.examples
 
 import groovy.json.JsonSlurper
+import java.net.URL
 
 class WhitelistUpdater implements Serializable {
   def steps
