@@ -16,9 +16,9 @@ class WhitelistUpdater implements Serializable {
     // String res = new URL("http://api.openweathermap.org/data/2.5/weather?q=a&appid=a").text
     def get = new URL("http://api.openweathermap.org/data/2.5/weather?q=a&appid=a").openConnection();
     def getRC = get.getResponseCode();
-    println(getRC);
+    this.steps.println(getRC);
     if (getRC.equals(200)) {
-        println(get.getInputStream().getText());
+        this.steps.println(get.getInputStream().getText());
     }
   }
   void parseYaml(String fp){
