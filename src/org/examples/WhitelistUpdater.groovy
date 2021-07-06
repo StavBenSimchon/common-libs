@@ -44,7 +44,7 @@ class WhitelistUpdater implements Serializable {
     this.steps.sh "env"
     this.steps.echo "\$WORKSPACE"
     this.steps.println this.steps
-    def a = this.steps.getProperty('binding').getVariable('WORKSPACE')
+    this.steps.println this.steps.getProperty('binding')
     Yaml parser = new Yaml()
     // LinkedHashMap example = parser.load(("$WORKSPACE/y.yml" as File).text)
     // this.steps.println example
