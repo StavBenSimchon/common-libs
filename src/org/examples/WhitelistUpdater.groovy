@@ -13,13 +13,15 @@ class WhitelistUpdater implements Serializable {
     this.brand = brand
   }
   void request(){
-    // String res = new URL("http://api.openweathermap.org/data/2.5/weather?q=a&appid=a").text
-    def get = new URL("http://api.openweathermap.org/data/2.5/weather?q=a&appid=a").openConnection();
-    def getRC = get.getResponseCode();
-    this.steps.println(getRC);
-    if (getRC.equals(200)) {
-        this.steps.println(get.getInputStream().getText());
-    }
+    String res = new URL("http://api.openweathermap.org/data/2.5/weather?q=a&appid=a").getText()
+    this.steps.println res
+    // def get = new URL("http://api.openweathermap.org/data/2.5/weather?q=a&appid=a").openConnection();
+    // def getRC = get.getResponseCode();
+    // this.steps.println(getRC);
+    // if (getRC.equals(200)) {
+    //     this.steps.println(get.getInputStream().getText());
+    // }
+    // this.steps.println(get.getInputStream().getText());
   }
   void parseYaml(String fp){
     this.brandConfig = this.steps.readYaml file: fp
