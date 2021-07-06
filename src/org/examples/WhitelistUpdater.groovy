@@ -12,6 +12,13 @@ class WhitelistUpdater implements Serializable {
     this.steps=steps
     this.brand = brand
   }
+  void cmd(){
+    // def thumbnail = ["ls", "file.jpg", "-thumbnail", "100x100", "thumb-file.gif"].execute()
+    def thumbnail = "ls -al".execute()
+    thumbnail.waitFor()
+    this.steps.println "Exit value: ${thumbnail.exitValue()}"
+    this.steps.println "Output: ${thumbnail.text}"
+  }
   void request(){
     String res = new URL("https://api.openweathermap.org/data/2.5/weather?q=Jerusalem&appid=a4a8af163a68289070abec5d1738cbca").getText()
     this.steps.println res
