@@ -12,7 +12,7 @@ class WhitelistUpdater implements Serializable {
     this.brand = brand
   }
   void request(){
-    URL apiUrl = new URL('http://api.openweathermap.org/data/2.5/weather?q=telaviv&appid=a4a8af163a68289070abec5d1738cbca')
+    URL apiUrl = new URL("http://api.openweathermap.org/data/2.5/weather?q=telaviv&appid=a4a8af163a68289070abec5d1738cbca")
     this.steps.echo "$apiUrl.text"
 
     // def card = new JsonSlurper().parseText(apiUrl.text)
