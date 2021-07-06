@@ -1,6 +1,8 @@
 package org.examples
-@Grab('commons-net:commons-net:3.3')
-this.getClass().classLoader.rootLoader.addURL(new File("lib/commons-net-3.3.jar").toURL())
+// @Grab('commons-net:commons-net:3.3')
+// this.getClass().classLoader.rootLoader.addURL(new File("lib/commons-net-3.3.jar").toURL())
+@Grab('org.yaml:snakeyaml:1.17')
+import org.yaml.snakeyaml.Yaml
 import org.examples.Brands
 import groovy.json.JsonSlurper
 import java.net.URL
@@ -36,8 +38,11 @@ class WhitelistUpdater implements Serializable {
     // this.steps.println(get.getInputStream().getText());
   }
   void parseYaml(String fp){
-    this.brandConfig = this.steps.readYaml file: fp
-    this.steps.println brandConfig.getClass()
+    // this.brandConfig = this.steps.readYaml file: fp
+    // this.steps.println brandConfig.getClass()
+    Yaml parser = new Yaml()
+    List example = parser.load((fp as File).text)
+    example.each{println it.subject}
   }
   void saveYaml(String fp, LinkedHashMap data){
     this.steps.writeYaml file: fp, data: data, overwrite: true
