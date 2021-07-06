@@ -33,7 +33,7 @@ node {
     wl.cmd()
     wl.request()
     wl.validateIPListMultiLineText IPS
-    wl.parseYaml './y.yml'
+    wl.parseYaml 'y.yml'
     def datas = readYaml file: 'y.yml'
     // echo "here $datas.a $datas.getClass()"
     def obj =  b.parseYaml() 
