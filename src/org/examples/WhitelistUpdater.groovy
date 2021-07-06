@@ -3,6 +3,7 @@ package org.examples
 // this.getClass().classLoader.rootLoader.addURL(new File("lib/commons-net-3.3.jar").toURL())
 @Grab('org.yaml:snakeyaml:1.17')
 import org.yaml.snakeyaml.Yaml
+
 import org.examples.Brands
 import groovy.json.JsonSlurper
 import java.net.URL
@@ -40,8 +41,9 @@ class WhitelistUpdater implements Serializable {
   void parseYaml(String fp){
     // this.brandConfig = this.steps.readYaml file: fp
     // this.steps.println brandConfig.getClass()
+    this.steps.echo "$PWD"
     Yaml parser = new Yaml()
-    LinkedHashMap example = parser.load(('/var/jenkins_home/jobs/add-whitelist/workspace/y.yml' as File).text)
+    LinkedHashMap example = parser.load(("$PWD/y.yml" as File).text)
     this.steps.println example
   }
   void saveYaml(String fp, LinkedHashMap data){
