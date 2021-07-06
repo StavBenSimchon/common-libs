@@ -1,5 +1,5 @@
 package org.examples
-
+@Grab('commons-net:commons-net:3.3')
 import org.examples.Brands
 import groovy.json.JsonSlurper
 import java.net.URL
