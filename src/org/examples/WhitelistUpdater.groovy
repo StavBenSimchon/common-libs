@@ -1,7 +1,7 @@
 package org.examples
 // @Grab('commons-net:commons-net:3.3')
 // this.getClass().classLoader.rootLoader.addURL(new File("lib/commons-net-3.3.jar").toURL())
-@Grab('org.yaml:snakeyaml:1.17')
+@Grab('org.yaml:snakeyaml')
 import org.yaml.snakeyaml.Yaml
 
 // @Grab('org.jenkins-ci.plugins:git:3.6.0')
@@ -9,7 +9,7 @@ import org.yaml.snakeyaml.Yaml
 
 // @Grab('com.atlassian.jira:jira-api:7.1.0-QR20151229171111')
 @Grab('com.atlassian.jira:jira-rest-java-client-api')
-
+import com.atlassian.jira.jira-rest-java-client-api.JiraRestClient
 // @Grab('org.eclipse.jgit:org.eclipse.jgit:5.12.0.202106070339-r')
 // import org.eclipse.jgit.org.eclipse.jgit
 
