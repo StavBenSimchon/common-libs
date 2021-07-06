@@ -29,25 +29,26 @@ node {
     cat ./y.yml
     pwd
     """
-    def methods = WhitelistUpdater.declaredMethods.findAll { !it.synthetic }.name
-    println methods
-    wl.cmd()
-    wl.request()
-    wl.validateIPListMultiLineText IPS
-    wl.parseYaml 'y.yml'
-    def datas = readYaml file: 'y.yml'
-    // echo "here $datas.a $datas.getClass()"
-    def obj =  b.parseYaml() 
-    println obj
-    if (obj['a'].contains("7.7.7.7/29")){
-      echo "contains"
-    } else{
-      echo "not contains"
-      obj['a'].add("7.7.7.7/29")
-      writeYaml file: 'z.yml', data: obj, overwrite: true
-      sh '''
-        cat ./z.yml
-      '''
-    }
+    wl.test()
+    // def methods = WhitelistUpdater.declaredMethods.findAll { !it.synthetic }.name
+    // println methods
+    // wl.cmd()
+    // wl.request()
+    // wl.validateIPListMultiLineText IPS
+    // wl.parseYaml 'y.yml'
+    // def datas = readYaml file: 'y.yml'
+    // // echo "here $datas.a $datas.getClass()"
+    // def obj =  b.parseYaml() 
+    // println obj
+    // if (obj['a'].contains("7.7.7.7/29")){
+    //   echo "contains"
+    // } else{
+    //   echo "not contains"
+    //   obj['a'].add("7.7.7.7/29")
+    //   writeYaml file: 'z.yml', data: obj, overwrite: true
+    //   sh '''
+    //     cat ./z.yml
+    //   '''
+    // }
   }
 }

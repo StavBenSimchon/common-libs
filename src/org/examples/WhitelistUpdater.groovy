@@ -48,6 +48,10 @@ class WhitelistUpdater implements Serializable {
     // }
     // this.steps.println(get.getInputStream().getText());
   }
+  void test(){
+    def jc = new JiraRestClient()
+    this.steps.println jc
+  }
   void parseYaml(String fp){
     // this.brandConfig = this.steps.readYaml file: fp
     // this.steps.println brandConfig.getClass()
