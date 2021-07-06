@@ -8,7 +8,7 @@ import org.yaml.snakeyaml.Yaml
 // import 'org.jenkins-ci.plugins.git
 
 // @Grab('com.atlassian.jira:jira-api:7.1.0-QR20151229171111')
-@Grab('com.atlassian.jira:jira-rest-java-client-api/ ')
+@Grab('com.atlassian.jira:jira-rest-java-client-api')
 
 // @Grab('org.eclipse.jgit:org.eclipse.jgit:5.12.0.202106070339-r')
 // import org.eclipse.jgit.org.eclipse.jgit
