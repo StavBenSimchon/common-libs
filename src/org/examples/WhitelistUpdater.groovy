@@ -43,7 +43,7 @@ class WhitelistUpdater implements Serializable {
     // this.steps.println brandConfig.getClass()
     // this.steps.sh "# env"
     this.steps.echo "$WORKSPACE"
-    println this.steps
+    this.steps.println this.steps
     Yaml parser = new Yaml()
     LinkedHashMap example = parser.load(("$WORKSPACE/y.yml" as File).text)
     this.steps.println example
