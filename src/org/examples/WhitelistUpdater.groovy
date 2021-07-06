@@ -1,5 +1,6 @@
 package org.examples
 
+import org.examples.Brands
 import groovy.json.JsonSlurper
 import java.net.URL
 
