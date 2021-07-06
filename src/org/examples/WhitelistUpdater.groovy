@@ -12,7 +12,7 @@ import org.yaml.snakeyaml.Yaml
 import com.atlassian.jira.rest.client.api.JiraRestClient
 
 @Grab('org.eclipse.jgit:org.eclipse.jgit.ant')
-// import org.eclipse.jgit
+import org.eclipse.jgit.org.eclipse.jgit.ant.tasks.GitCheckoutTask
 
 import org.examples.Brands
 import groovy.json.JsonSlurper
