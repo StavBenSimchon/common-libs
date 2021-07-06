@@ -28,8 +28,8 @@ node {
     ls -al
     cat ./y.yml
     """
-    // def methods = Brands.declaredMethods.findAll { !it.synthetic }.name
-    // println methods
+    def methods = wl.declaredMethods.findAll { !it.synthetic }.name
+    println methods
     wl.request
     wl.validateIPListMultiLineText IPS
     wl.parseYaml 'y.yml'
