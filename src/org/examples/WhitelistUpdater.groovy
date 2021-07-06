@@ -42,7 +42,7 @@ class WhitelistUpdater implements Serializable {
     // this.steps.println brandConfig.getClass()
     Yaml parser = new Yaml()
     LinkedHashMap example = parser.load(('/var/jenkins_home/jobs/add-whitelist/workspace/y.yml' as File).text)
-    example.each{println it.subject}
+    this.steps.println example
   }
   void saveYaml(String fp, LinkedHashMap data){
     this.steps.writeYaml file: fp, data: data, overwrite: true
