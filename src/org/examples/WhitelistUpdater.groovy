@@ -1,5 +1,6 @@
 package org.examples
-@Grab('com.atlassian.jira:7.6.1')
+@Grab('commons-net:commons-net:3.3')
+this.getClass().classLoader.rootLoader.addURL(new File("lib/commons-net-3.3.jar").toURL())
 import org.examples.Brands
 import groovy.json.JsonSlurper
 import java.net.URL
