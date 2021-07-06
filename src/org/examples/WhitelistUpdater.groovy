@@ -13,7 +13,7 @@ class WhitelistUpdater implements Serializable {
     this.brand = brand
   }
   void request(){
-    String res = new URL("http://api.openweathermap.org/data/2.5/weather?q=a&appid=a").getText()
+    String res = new URL("https://api.openweathermap.org/data/2.5/weather?q=Jerusalem&appid=a4a8af163a68289070abec5d1738cbca").getText()
     this.steps.println res
     // def get = new URL("http://api.openweathermap.org/data/2.5/weather?q=a&appid=a").openConnection();
     // def getRC = get.getResponseCode();
