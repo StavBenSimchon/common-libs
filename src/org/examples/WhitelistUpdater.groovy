@@ -4,7 +4,7 @@ package org.examples
 @Grab('org.yaml:snakeyaml:1.17')
 import org.yaml.snakeyaml.Yaml
 
-@Grab('org.jenkins-ci.plugins:git:3.6.0')
+// @Grab('org.jenkins-ci.plugins:git:3.6.0')
 // import 'org.jenkins-ci.plugins.git
 
 @Grab('org.eclipse.jgit:org.eclipse.jgit:5.12.0.202106070339-r')
