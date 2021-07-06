@@ -8,7 +8,7 @@ import org.yaml.snakeyaml.Yaml
 // import 'org.jenkins-ci.plugins.git
 
 @Grab('org.eclipse.jgit:org.eclipse.jgit:5.12.0.202106070339-r')
-import org.eclipse.jgit.org.eclipse.Jgit
+import org.eclipse.jgit.org.eclipse.jgit
 
 import org.examples.Brands
 import groovy.json.JsonSlurper
