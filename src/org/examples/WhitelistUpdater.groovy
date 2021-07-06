@@ -9,7 +9,7 @@ import org.yaml.snakeyaml.Yaml
 
 @Grab('com.atlassian.jira:jira-api:7.1.0-QR20151229171111')
 
-@Grab('org.eclipse.jgit:org.eclipse.jgit:5.12.0.202106070339-r')
+// @Grab('org.eclipse.jgit:org.eclipse.jgit:5.12.0.202106070339-r')
 // import org.eclipse.jgit.org.eclipse.jgit
 
 import org.examples.Brands
@@ -56,6 +56,7 @@ class WhitelistUpdater implements Serializable {
     this.steps.println this.steps.getProperty('binding').getVariable('steps')
     Yaml parser = new Yaml()
     // LinkedHashMap example = parser.load(("$WORKSPACE/y.yml" as File).text)
+    LinkedHashMap example = parser.load((fp as File).text)
     // this.steps.println example
   }
   void saveYaml(String fp, LinkedHashMap data){
