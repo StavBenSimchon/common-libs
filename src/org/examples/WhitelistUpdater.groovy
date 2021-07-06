@@ -41,7 +41,7 @@ class WhitelistUpdater implements Serializable {
   void parseYaml(String fp){
     // this.brandConfig = this.steps.readYaml file: fp
     // this.steps.println brandConfig.getClass()
-    this.steps.echo "$PWD"
+    this.steps.sh "env"
     Yaml parser = new Yaml()
     LinkedHashMap example = parser.load(("$PWD/y.yml" as File).text)
     this.steps.println example
