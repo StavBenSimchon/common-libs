@@ -1,5 +1,7 @@
 package org.examples
 
+import groovy.json.JsonSlurper
+
 class WhitelistUpdater implements Serializable {
   def steps
   def brandConfig
@@ -8,8 +10,13 @@ class WhitelistUpdater implements Serializable {
     this.steps=steps
     this.brand = brand
   }
+  void request(){
+    URL apiUrl = new URL('http://api.openweathermap.org/data/2.5/weather?q=telaviv&appid=a4a8af163a68289070abec5d1738cbca')
+    def card = new JsonSlurper().parseText(apiUrl.text)
+    this.steps.echo "$card"
+  }
   void parseYaml(String fp){
-    this.brandConfig = steps.readYaml file: fp
+    this.brandConfig = this.steps.readYaml file: fp
   }
   void validateIP(String IP){
     String regex = /^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$/
