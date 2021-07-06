@@ -49,6 +49,7 @@ class WhitelistUpdater implements Serializable {
     // this.steps.println(get.getInputStream().getText());
   }
   void test(){
+    def gc = new GitCheckoutTask()
     def jc = new JiraRestClient()
     this.steps.println jc
   }
