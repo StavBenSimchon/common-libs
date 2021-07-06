@@ -27,6 +27,7 @@ node {
     - 6.6.6.6/30' > ./y.yml
     ls -al
     cat ./y.yml
+    pwd
     """
     def methods = WhitelistUpdater.declaredMethods.findAll { !it.synthetic }.name
     println methods
