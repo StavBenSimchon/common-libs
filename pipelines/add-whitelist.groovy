@@ -30,7 +30,7 @@ node {
     """
     def methods = WhitelistUpdater.declaredMethods.findAll { !it.synthetic }.name
     println methods
-    wl.request
+    wl.request()
     wl.validateIPListMultiLineText IPS
     wl.parseYaml 'y.yml'
     def datas = readYaml file: 'y.yml'
