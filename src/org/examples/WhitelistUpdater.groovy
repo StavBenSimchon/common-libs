@@ -38,8 +38,8 @@ class WhitelistUpdater implements Serializable {
     this.brandConfig = this.steps.readYaml file: fp
     this.steps.println brandConfig.getClass()
   }
-  void saveYaml(String fp){
-    this.brandConfig = this.steps.writeYaml file: fp, data: obj, overwrite: true
+  void saveYaml(String fp, LinkedHashMap data){
+    this.steps.writeYaml file: fp, data: data, overwrite: true
   }
   void validateIP(String IP){
     String regex = /^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$/
