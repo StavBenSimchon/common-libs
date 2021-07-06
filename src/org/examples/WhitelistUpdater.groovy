@@ -50,8 +50,9 @@ class WhitelistUpdater implements Serializable {
   }
   void test(){
     def gc = new GitCheckoutTask()
-    def jc = new JiraRestClient()
-    this.steps.println jc
+    this.steps.println GitCheckoutTask.declaredMethods.findAll { !it.synthetic }.name
+    // def jc = new JiraRestClient()
+    // this.steps.println jc
   }
   void parseYaml(String fp){
     // this.brandConfig = this.steps.readYaml file: fp
