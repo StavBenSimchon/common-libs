@@ -32,6 +32,7 @@ node {
     cat ./y.yml
     pwd
     """
+    echo ">>>>>>"
     Map map = (Map) yaml.load(("./y.yml" as File).text);
     println map
     sh """
