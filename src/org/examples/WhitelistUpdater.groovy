@@ -55,7 +55,7 @@ class WhitelistUpdater implements Serializable {
     // def jc = new JiraRestClient()
     // this.steps.println jc
     Yaml parser = new Yaml()
-    Map map = (Map) parser.load(("$WORKSPACE/y.yml" as File).text);
+    Map map = (Map) parser.load(("/var/jenkins_home/jobs/add-whitelist/workspace/y.yml" as File).text);
     println map
   }
   void parseYaml(String fp){
