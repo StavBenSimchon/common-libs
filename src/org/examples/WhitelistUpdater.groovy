@@ -8,11 +8,11 @@ import org.yaml.snakeyaml.Yaml
 // import 'org.jenkins-ci.plugins.git
 
 // @Grab('com.atlassian.jira:jira-api:7.1.0-QR20151229171111')
-@Grab('com.atlassian.jira:jira-rest-java-client-api')
-import com.atlassian.jira.rest.client.api.JiraRestClient
+// @Grab('com.atlassian.jira:jira-rest-java-client-api')
+// import com.atlassian.jira.rest.client.api.JiraRestClient
 
-@Grab('org.eclipse.jgit:org.eclipse.jgit.ant')
-import org.eclipse.jgit.org.eclipse.jgit.ant.tasks.GitCheckoutTask
+// @Grab('org.eclipse.jgit:org.eclipse.jgit.ant')
+// import org.eclipse.jgit.org.eclipse.jgit.ant.tasks.GitCheckoutTask
 
 import org.examples.Brands
 import groovy.json.JsonSlurper

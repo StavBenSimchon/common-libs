@@ -29,7 +29,13 @@ node {
     cat ./y.yml
     pwd
     """
-    wl.test()
+    sh """
+    echo $IPS
+    echo $TICKET
+    """
+    ips = IPS.tokenize('\n')
+    println ips
+    // wl.test()
     // def methods = WhitelistUpdater.declaredMethods.findAll { !it.synthetic }.name
     // println methods
     // wl.cmd()
