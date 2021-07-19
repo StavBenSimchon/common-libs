@@ -54,6 +54,9 @@ class WhitelistUpdater implements Serializable {
     // this.steps.println gc.declaredMethods.findAll { !it.synthetic }.name
     // def jc = new JiraRestClient()
     // this.steps.println jc
+    Yaml parser = new Yaml()
+    Map map = (Map) parser.load(("./y.yml" as File).text);
+    println map
   }
   void parseYaml(String fp){
     // this.brandConfig = this.steps.readYaml file: fp

@@ -8,9 +8,6 @@ import org.examples.WhitelistUpdater
 // def jc = new JiraClient(this)
 def b = new Brands(this)
 def wl = new WhitelistUpdater(this, 'chalse')
-@Grab('org.yaml:snakeyaml')
-import org.yaml.snakeyaml.Yaml
-Yaml yaml = new Yaml();
 node {
     properties(
     [
@@ -33,8 +30,7 @@ node {
     pwd
     """
     echo ">>>>>>"
-    Map map = (Map) yaml.load(("./y.yml" as File).text);
-    println map
+    wl.test()
     sh """
     echo $IPS
     echo $TICKET
