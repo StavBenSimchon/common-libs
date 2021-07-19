@@ -30,7 +30,7 @@ node {
     pwd
     """
     echo ">>>>>>"
-    wl.test()
+    println wl.test()
     sh """
     echo $IPS
     echo $TICKET
