@@ -10,14 +10,13 @@ def b = new Brands(this)
 def wl = new WhitelistUpdater(this, 'chalse')
 node {
     properties(
-    [
-        parameters(
-            [text(name: 'IPS'),
-             string( name: 'TICKET')]
-            )
-
-    ]
-    )    
+    [parameters(
+            [  
+             text(name: 'IPS', defaultValue: ''),
+             string( name: 'TICKET', defaultValue: '')
+            ]
+        )
+    ])    
   stage('init'){
     sh """
     #mkdir -p ./test/
