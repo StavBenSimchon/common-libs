@@ -4,17 +4,15 @@ def getTicketsFromFile(fp){
 def getTicketsFolders(folders, filename){
   res = []
   folders.each{ fldr ->
-    echo "stat res : ${res}"
     fp = "${WORKSPACE}/${fldr}/${filename}"
     res = res.plus(getTicketsFromFile(fp))
-    echo "res : ${res}"
   }
   return res
 }
-def extractTickets(list){
+def extractTickets(filelines){
     res = []
     flag = true
-    for (line in list){
+    for (line in filelines){
         if(flag){
             if(line.startsWith('-')){
                 flag = false
