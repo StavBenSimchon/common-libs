@@ -1,3 +1,5 @@
+import groovy.json.JsonSlurper
+
 def getRelevantTicket(ticket){
   // CRM-5369
   def jsonSlurper = new JsonSlurper()
