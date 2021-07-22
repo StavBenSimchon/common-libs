@@ -87,7 +87,8 @@ node{
     fp = "$WORKSPACE/log"
     println getTicketsFromFile(fp)
     folders = ["a", "b"]
-    println getTicketsFolders(folders)
+    filename = 'log'
+    println getTicketsFolders(folders,filename)
     // def list = new File("$WORKSPACE/log").collect {it}
     // println list
     // tickets = grab_tickets(list)
