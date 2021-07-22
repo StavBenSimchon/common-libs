@@ -3,12 +3,12 @@ import groovy.json.JsonSlurper
 def getRelevantTicket(ticket){
   // CRM-5369
   def jsonSlurper = new JsonSlurper()
-  jira_user = 'automation@finovation.com'
-  jira_token = 'vHYY25Yx6lyhCe7Fswd11497'
+  j_user = 'automation@finovation.com'
+  j_token = 'vHYY25Yx6lyhCe7Fswd11497'
   url = "https://finovation.atlassian.net/rest/api/2/issue/${ticket}?fields=status"
-  // println new URL('http://www.google.com').text
+  urls= "https://${j_user}:${j_token}@finovation.atlassian.net/rest/api/2/issue/${ticket}?fields=status"
+  println new URL(urls).text
   // println 'http://www.google.com'.toURL().text
-  println url.toURL().text
 
   // def http = new HTTPBuilder(url)
   // http.auth.basic(jira_user, jira_token)
