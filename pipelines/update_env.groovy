@@ -4,7 +4,7 @@ def getTicketsFromFile(fp){
 def getTicketsFolders(folders, filename){
   res = []
   folders.each{ fldr ->
-    fp = "./${fldr}/${filename}"
+    fp = "${WORKSPACE}/${fldr}/${filename}"
     res.add(extractTickets(new File(fp).collect {it}))
   }
   return res
