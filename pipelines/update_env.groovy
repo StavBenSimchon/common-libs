@@ -6,13 +6,15 @@ def getRelevantTicket(ticket){
   jira_user = 'automation@finovation.com'
   jira_token = 'vHYY25Yx6lyhCe7Fswd11497'
   url = "https://finovation.atlassian.net/rest/api/2/issue/${ticket}?fields=status"
-  def http = new HTTPBuilder(url)
-  http.auth.basic(jira_user, jira_token)
-  http.parser[ContentType.JSON] = http.parser.'application/json'
-  http.get(path : path, contentType : ContentType.JSON) { response, json ->
-    println json
-    println JsonOutput.toJson(json) 
-  }
+  println 'http://www.google.com'.toURL().text
+
+  // def http = new HTTPBuilder(url)
+  // http.auth.basic(jira_user, jira_token)
+  // http.parser[ContentType.JSON] = http.parser.'application/json'
+  // http.get(path : path, contentType : ContentType.JSON) { response, json ->
+  //   println json
+  //   println JsonOutput.toJson(json) 
+  // }
 }
 def getTicketsFromFile(fp){
     return extractTickets(new File(fp).collect {it})
