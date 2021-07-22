@@ -1,6 +1,14 @@
 def getTicketsFromFile(fp){
     return extractTickets(new File(fp).collect {it})
 }
+def getTicketsFolders(folders, filename){
+  res = []
+  folders.each{ fldr ->
+    fp = "${fldr}/${filename}"
+    res.add(extractTickets(new File(fp).collect {it}))
+  }
+  return res
+}
 def extractTickets(list){
     res = []
     flag = true
@@ -40,6 +48,18 @@ node{
         pwd
         ls -al
         '''
+    sh '''
+     echo "
+## asd
+## asd
+- add-123 asdasdasd
+- add-143 fgshdfghk
+- add-153 yhnrtgbn
+- add-163 xdrtxdrt
+### bds
+- daa-123
+" > log
+    '''
     }
     dir("b"){
         git url:"https://github.com/StavBenSimchon/tes1.git" ,branch: 'main'
@@ -47,7 +67,18 @@ node{
         pwd
         ls -al
         '''
-        
+    sh '''
+     echo "
+## asd
+## asd
+- add-123 asdasdasd
+- add-143 fgshdfghk
+- add-153 yhnrtgbn
+- add-163 xdrtxdrt
+### bds
+- daa-123
+" > log
+    '''
     }
     sh '''
      ls -al
@@ -55,6 +86,8 @@ node{
     // echo "$WORKSPACE"
     fp = "$WORKSPACE/log"
     println getTicketsFromFile(fp)
+    folders = ["a", "b"]
+    println getTicketsFolders(folders)
     // def list = new File("$WORKSPACE/log").collect {it}
     // println list
     // tickets = grab_tickets(list)
