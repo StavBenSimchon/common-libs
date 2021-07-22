@@ -6,8 +6,9 @@ def getRelevantTicket(ticket){
   jira_user = 'automation@finovation.com'
   jira_token = 'vHYY25Yx6lyhCe7Fswd11497'
   url = "https://finovation.atlassian.net/rest/api/2/issue/${ticket}?fields=status"
-  println new URL('http://www.google.com').text
+  // println new URL('http://www.google.com').text
   // println 'http://www.google.com'.toURL().text
+  println url.toURL().text
 
   // def http = new HTTPBuilder(url)
   // http.auth.basic(jira_user, jira_token)
