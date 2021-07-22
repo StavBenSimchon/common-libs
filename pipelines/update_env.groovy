@@ -5,7 +5,7 @@ def getTicketsFolders(folders, filename){
   res = []
   folders.each{ fldr ->
     fp = "${WORKSPACE}/${fldr}/${filename}"
-    res.add(getTicketsFromFile(fp))
+    res.plus(getTicketsFromFile(fp))
     echo "res : ${res}"
   }
   return res
