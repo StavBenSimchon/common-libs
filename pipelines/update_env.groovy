@@ -1,3 +1,17 @@
+def getRelevantTicket(ticket){
+  // CRM-5369
+  def jsonSlurper = new JsonSlurper()
+  jira_user = 'automation@finovation.com'
+  jira_token = 'vHYY25Yx6lyhCe7Fswd11497'
+  url = "https://finovation.atlassian.net/rest/api/2/issue/${ticket}?fields=status"
+  def http = new HTTPBuilder(url)
+  http.auth.basic(jira_user, jira_token)
+  http.parser[ContentType.JSON] = http.parser.'application/json'
+  http.get(path : path, contentType : ContentType.JSON) { response, json ->
+    println json
+    println JsonOutput.toJson(json) 
+  }
+}
 def getTicketsFromFile(fp){
     return extractTickets(new File(fp).collect {it})
 }
@@ -94,6 +108,7 @@ node{
     folders = ["a", "b"]
     filename = 'log'
     println getTicketsFolders(folders,filename)
+    println getRelevantTicket("CRM-5369")
     // def list = new File("$WORKSPACE/log").collect {it}
     // println list
     // tickets = grab_tickets(list)
