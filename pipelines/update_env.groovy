@@ -82,6 +82,8 @@ node{
     }
     sh '''
      ls -al
+     ls -al ./a
+     ls -al ./b
     '''
     // echo "$WORKSPACE"
     fp = "$WORKSPACE/log"
