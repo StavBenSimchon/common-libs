@@ -7,6 +7,7 @@ def getRelevantTicket(ticket){
   j_token = 'vHYY25Yx6lyhCe7Fswd11497'
   url = "https://finovation.atlassian.net/rest/api/2/issue/${ticket}?fields=status"
   urls= "https://${j_user}:${j_token}@finovation.atlassian.net/rest/api/2/issue/${ticket}?fields=status"
+  println urls
   println new URL(urls).text
   // println 'http://www.google.com'.toURL().text
 
