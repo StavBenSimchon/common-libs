@@ -1,6 +1,4 @@
 import groovy.json.JsonSlurper
-import groovyx.net.http.HTTPBuilder
-import groovyx.net.http.ContentType
 
 def getRelevantTicket(ticket){
   // CRM-5369
