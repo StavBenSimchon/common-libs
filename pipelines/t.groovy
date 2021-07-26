@@ -1,5 +1,5 @@
 import groovy.json.JsonSlurper
-
+YXV0b21hdGlvbkBmaW5vdmF0aW9uLmNvbTp2SFlZMjVZeDZseWhDZTdGc3dkMTE0OTcK
 j_user = 'automation@finovation.com'
 j_token = 'vHYY25Yx6lyhCe7Fswd11497'
 accessToken = "${j_user}:${j_token}".bytes.encodeBase64().toString()
@@ -40,7 +40,7 @@ def transitionTicket(ticket){
   ticket = "CRM-4931"
   url = "https://finovation.atlassian.net/rest/api/2/issue/${ticket}?fields=status"
   def data = makeRequest("GET", url, accessToken, "application/json", "")
-  println data
+  println data.fields.status.name
 }
 def getTicketsFromFile(fp){
     return extractTickets(new File(fp).collect {it})
