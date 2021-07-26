@@ -1,12 +1,40 @@
 import groovy.json.JsonSlurper
 
+def changeTicketsStatus(tickets){
+  status = "in QA"
+  ret = []
+  tickets.each{ ticket ->
+    if (changeTicketStatus(ticket)){
+      ret.add(ticket)
+    }
+  }
+  return ret
+}
+
+def changeTicketStatus(ticket, status){
+  if(getTicketStatus() != status){
+    return false
+  } else{
+    changeTicketStatus(status)
+    return true
+  }
+}
+
+def getTicketStatus(){
+  // rest jira
+}
+
+def changeTicketStatus(status){
+  // rest to jira
+}
+
 def getRelevantTicket(ticket){
   // CRM-5369
   def jsonSlurper = new JsonSlurper()
   j_user = 'automation@finovation.com'
   j_token = 'vHYY25Yx6lyhCe7Fswd11497'
   url = "https://finovation.atlassian.net/rest/api/2/issue/${ticket}?fields=status"
-  urls= "https://finovation.atlassian.net/rest/api/2/issue/${ticket}?fields=status"
+  urls = "https://finovation.atlassian.net/rest/api/2/issue/${ticket}?fields=status"
   // println new URL(urls).text
   // println 'http://www.google.com'.toURL().text
 
