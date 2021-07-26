@@ -17,7 +17,7 @@ def makeRequest(String method, String apiAddress, String accessToken, String mim
     con.setRequestProperty("Content-Type", mimeType);
     json = JsonOutput.toJson(json)
     println json
-    OutputStream os = httpCon.getOutputStream();
+    OutputStream os = con.getOutputStream();
     OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");    
     osw.write(json);
     osw.flush();
