@@ -25,7 +25,7 @@ def makeRequest(String method, String apiAddress, String accessToken, String mim
   failure = false;         
   if(statusCode == 200 || statusCode == 201){              
     body = con.content.text;   
-    println body
+    // println body
     return new JsonSlurper().parseText(body)        
   }else{               
     failure = true;            
@@ -41,7 +41,8 @@ def transitionTicket(ticket){
   url = "https://finovation.atlassian.net/rest/api/2/issue/${ticket}?fields=status"
   // println new URL(urls).text
   // println 'http://www.google.com'.toURL().text
-  makeRequest("GET", url, accessToken, "application/json", "")
+  def data = makeRequest("GET", url, accessToken, "application/json", "")
+  println data
 }
 def getTicketsFromFile(fp){
     return extractTickets(new File(fp).collect {it})
