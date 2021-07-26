@@ -42,7 +42,6 @@ def transitionTicket(ticket){
   // println new URL(urls).text
   // println 'http://www.google.com'.toURL().text
   makeRequest("GET", url, accessToken, "application/json", "")
-/
 }
 def getTicketsFromFile(fp){
     return extractTickets(new File(fp).collect {it})
