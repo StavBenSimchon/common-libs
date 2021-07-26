@@ -44,7 +44,7 @@ def transitionTicket(ticket){
   data = makeRequest("GET", url, accessToken, "application/json", "")
   data.transitions.each{ 
     println it
-    // println it.name + " " it.id 
+    println it.name + " " it.id 
   }
 }
 def getTicketsFromFile(fp){
