@@ -42,7 +42,9 @@ def transitionTicket(ticket){
   println data.fields.status.name
   url = "https://finovation.atlassian.net/rest/api/3/issue/CRM-4931/transitions"
   data = makeRequest("GET", url, accessToken, "application/json", "")
-  println data
+  data.transitions.each{ obj ->
+    println obj.name + " " obj.id 
+  }
 }
 def getTicketsFromFile(fp){
     return extractTickets(new File(fp).collect {it})
