@@ -30,7 +30,7 @@ def makeRequest(String method, String apiAddress, String accessToken, String mim
   }else{               
     failure = true;            
     body = con.getErrorStream().text;       
-    println body.fields
+    // println body.fields
   }   
 }
 def transitionTicket(ticket){
