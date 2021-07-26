@@ -16,7 +16,6 @@ def makeRequest(String method, String apiAddress, String accessToken, String mim
   if(json){
     con.setRequestProperty("Content-Type", mimeType);
     json = JsonOutput.toJson(json)
-    println json.getClass()
     OutputStream os = con.getOutputStream();
     OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");    
     osw.write(json);
@@ -26,7 +25,10 @@ def makeRequest(String method, String apiAddress, String accessToken, String mim
   }
   con.connect();
   statusCode = con.responseCode;           
-  message = con.responseMessage;            
+  message = con.responseMessage;
+  println  statusCode  
+  println  message  
+  println con.getInputStream()
   failure = false;         
   if(statusCode == 200 || statusCode == 201){              
     body = con.content.text;   
