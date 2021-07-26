@@ -40,6 +40,9 @@ def transitionTicket(ticket){
   url = "https://finovation.atlassian.net/rest/api/2/issue/${ticket}?fields=status"
   def data = makeRequest("GET", url, accessToken, "application/json", "")
   println data.fields.status.name
+  url = "https://finovation.atlassian.net/rest/api/3/issue/CRM-4931/transitions"
+  data = makeRequest("GET", url, accessToken, "application/json", "")
+  println data
 }
 def getTicketsFromFile(fp){
     return extractTickets(new File(fp).collect {it})
