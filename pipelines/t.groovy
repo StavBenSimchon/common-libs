@@ -10,16 +10,17 @@ def makeRequest(String method, String apiAddress, String accessToken, String mim
   con.setRequestMethod(method);
   con.setRequestProperty("Authorization", "Basic " + accessToken); 
   con.setRequestProperty("Accept", "application/json");
-  // urlConnection.setRequestProperty("Content-Type", mimeType);
+  con.setRequestProperty("Content-Type", mimeType);
   con.setDoOutput(true);
   // post
-  // OutputStream outputStream = new BufferedOutputStream(urlConnection.getOutputStream());
-  // BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "utf-8"));
-  // writer.write(requestBody);
-  // writer.flush();
-  // writer.close();
-  // outputStream.close();   
-
+  if(requestBody != ""){
+    OutputStream outputStream = new BufferedOutputStream(con.getOutputStream());
+    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "utf-8"));
+    writer.write(requestBody);
+    writer.flush();
+    writer.close();
+    outputStream.close();   
+  }
   con.connect();
   statusCode = con.responseCode;           
   message = con.responseMessage;            
@@ -34,6 +35,7 @@ def makeRequest(String method, String apiAddress, String accessToken, String mim
     // println body.fields
   }   
 }
+
 def transitionTicket(ticket){
   ticket = "CRM-5369"
   url = "https://finovation.atlassian.net/rest/api/2/issue/${ticket}?fields=status"
