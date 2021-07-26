@@ -37,7 +37,7 @@ def makeRequest(String method, String apiAddress, String accessToken, String mim
 }
 
 def transitionTicket(ticket){
-  ticket = "CRM-5369"
+  ticket = "CRM-4931"
   url = "https://finovation.atlassian.net/rest/api/2/issue/${ticket}?fields=status"
   def data = makeRequest("GET", url, accessToken, "application/json", "")
   println data.fields.status.name
