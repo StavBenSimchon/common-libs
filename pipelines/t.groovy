@@ -3,19 +3,20 @@ j_user = 'automation@finovation.com'
 j_token = 'vHYY25Yx6lyhCe7Fswd11497'
 accessToken = "${j_user}:${j_token}".bytes.encodeBase64().toString()
 
-def makeRequest(String method, String apiAddress, String accessToken, String mimeType, String requestBody){
+def makeRequest(String method, String apiAddress, String accessToken, String mimeType, json){
   URL url = new URL (apiAddress);
   HttpURLConnection con = (HttpURLConnection)url.openConnection();
   con.setRequestMethod(method);
   con.setRequestProperty("Authorization", "Basic " + accessToken); 
   con.setRequestProperty("Accept", "application/json");
-  con.setRequestProperty("Content-Type", mimeType);
   con.setDoOutput(true);
   // post
-  if(requestBody != ""){
+  if(json){
+    json = JsonOutput.toJson(json)
+    con.setRequestProperty("Content-Type", mimeType);
     OutputStream outputStream = new BufferedOutputStream(con.getOutputStream());
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "utf-8"));
-    writer.write(requestBody);
+    writer.write(json);
     writer.flush();
     writer.close();
     outputStream.close();   
@@ -41,11 +42,19 @@ def transitionTicket(ticket){
   def data = makeRequest("GET", url, accessToken, "application/json", "")
   println data.fields.status.name
   url = "https://finovation.atlassian.net/rest/api/3/issue/CRM-4931/transitions"
-  data = makeRequest("GET", url, accessToken, "application/json", "")
+  data = makeRequest("GET", url, accessToken, "application/json", null)
+  status="IN QA"
+  id = null
+  integration_id = 61
   data.transitions.each{ 
-    println it
-    println it.name 
-    println it.id 
+    if(it.name == status){
+      println it.name 
+      println it.id 
+      id = it.id
+      dataObj = [transition:[id:integration_id]]
+      data = makeRequest("POST", url, accessToken, "application/json", dataObj)
+      println data
+    }
   }
 }
 def getTicketsFromFile(fp){

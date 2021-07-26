@@ -27,41 +27,37 @@ def getTicketStatus(){
 def changeTicketStatus(status){
   // rest to jira
 }
-def parseResponse(HttpURLConnection connection){             
-  statusCode = connection.responseCode;           
-  message = connection.responseMessage;            
+def makeRequest(String method, String apiAddress, String accessToken, String mimeType, String requestBody){
+  URL url = new URL (apiAddress);
+  HttpURLConnection con = (HttpURLConnection)url.openConnection();
+  con.setRequestMethod(method);
+  con.setRequestProperty("Authorization", "Basic " + accessToken); 
+  con.setRequestProperty("Accept", "application/json");
+  con.setRequestProperty("Content-Type", mimeType);
+  con.setDoOutput(true);
+  // post
+  if(requestBody != ""){
+    OutputStream outputStream = new BufferedOutputStream(con.getOutputStream());
+    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "utf-8"));
+    writer.write(requestBody);
+    writer.flush();
+    writer.close();
+    outputStream.close();   
+  }
+  con.connect();
+  statusCode = con.responseCode;           
+  message = con.responseMessage;            
   failure = false;         
   if(statusCode == 200 || statusCode == 201){              
-    body = connection.content.text;//this would fail the pipeline if there was a 400   
-    println body
-    return body        
+    body = con.content.text;   
+    // println body
+    return new JsonSlurper().parseText(body)        
   }else{               
-    this.failure = true;            
-    this.body = connection.getErrorStream().text;           
-  }         
-} 
-def URLConnection makeRequest(String method, String apiAddress, String accessToken, String mimeType, String requestBody) throws IOException {
-        URL url = new URL(apiAddress);
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-
-        urlConnection.setDoInput(true);
-        urlConnection.setDoOutput(!method.equals("GET"));
-        urlConnection.setRequestMethod(method);
-
-        urlConnection.setRequestProperty("Authorization", "Bearer " + accessToken);        
-
-        urlConnection.setRequestProperty("Content-Type", mimeType);
-        OutputStream outputStream = new BufferedOutputStream(urlConnection.getOutputStream());
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "utf-8"));
-        writer.write(requestBody);
-        writer.flush();
-        writer.close();
-        outputStream.close();            
-
-        urlConnection.connect();
-
-        return urlConnection;
-    }
+    failure = true;            
+    body = con.getErrorStream().text;       
+    // println body.fields
+  }   
+}
 def getRelevantTicket(ticket){
   def jsonSlurper = new JsonSlurper()
   ticket = "CRM-5369"
