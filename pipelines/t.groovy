@@ -1,19 +1,38 @@
 import groovy.json.JsonSlurper
 
 def parseResponse(HttpURLConnection connection){             
-  statusCode = connection.responseCode;           
-  message = connection.responseMessage;            
+      
+} 
+def makeRequest(String method, String url, String accessToken, String mimeType, String requestBody){
+  URL url = new URL (url);
+  HttpURLConnection con = (HttpURLConnection)url.openConnection();
+  con.setRequestMethod(method);
+  con.setRequestProperty("Authorization", "Basic " + accessToken); 
+  con.setRequestProperty("Accept", "application/json");
+  // urlConnection.setRequestProperty("Content-Type", mimeType);
+  con.setDoOutput(true);
+  // post
+  // OutputStream outputStream = new BufferedOutputStream(urlConnection.getOutputStream());
+  // BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "utf-8"));
+  // writer.write(requestBody);
+  // writer.flush();
+  // writer.close();
+  // outputStream.close();   
+
+  con.connect();
+  statusCode = con.responseCode;           
+  message = con.responseMessage;            
   failure = false;         
   if(statusCode == 200 || statusCode == 201){              
-    body = connection.content.text;//this would fail the pipeline if there was a 400   
+    body = con.content.text;   
     println body
-    return body        
+    return new JsonSlurper().parseText(body)        
   }else{               
     failure = true;            
-    body = connection.getErrorStream().text;       
+    body = con.getErrorStream().text;       
     println body 
-  }         
-} 
+  }   
+}
 def transitionTicket(ticket){
   ticket = "CRM-5369"
   j_user = 'automation@finovation.com'
@@ -22,14 +41,8 @@ def transitionTicket(ticket){
   url = "https://finovation.atlassian.net/rest/api/2/issue/${ticket}?fields=status"
   // println new URL(urls).text
   // println 'http://www.google.com'.toURL().text
-  URL url = new URL (url);
-  HttpURLConnection con = (HttpURLConnection)url.openConnection();
-  con.setRequestMethod("GET");
-  con.setRequestProperty("Authorization", "Basic " + accessToken); 
-  con.setRequestProperty("Accept", "application/json");
-  con.setDoOutput(true);
-  con.connect();
-  parseResponse(con);
+  makeRequest("GET", url, accessToken, "application/json", "")
+/
 }
 def getTicketsFromFile(fp){
     return extractTickets(new File(fp).collect {it})
