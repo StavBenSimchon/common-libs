@@ -1,8 +1,9 @@
 import groovy.json.JsonSlurper
 
-def parseResponse(HttpURLConnection connection){             
-      
-} 
+j_user = 'automation@finovation.com'
+j_token = 'vHYY25Yx6lyhCe7Fswd11497'
+accessToken = "${j_user}:${j_token}".bytes.encodeBase64().toString()
+
 def makeRequest(String method, String apiAddress, String accessToken, String mimeType, String requestBody){
   URL url = new URL (apiAddress);
   HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -35,12 +36,7 @@ def makeRequest(String method, String apiAddress, String accessToken, String mim
 }
 def transitionTicket(ticket){
   ticket = "CRM-5369"
-  j_user = 'automation@finovation.com'
-  j_token = 'vHYY25Yx6lyhCe7Fswd11497'
-  def accessToken = "${j_user}:${j_token}".bytes.encodeBase64().toString()
   url = "https://finovation.atlassian.net/rest/api/2/issue/${ticket}?fields=status"
-  // println new URL(urls).text
-  // println 'http://www.google.com'.toURL().text
   def data = makeRequest("GET", url, accessToken, "application/json", "")
   println data.fields.status.name
 }
