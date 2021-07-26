@@ -1,32 +1,5 @@
 import groovy.json.JsonSlurper
 
-def changeTicketsStatus(tickets){
-  status = "in QA"
-  ret = []
-  tickets.each{ ticket ->
-    if (changeTicketStatus(ticket)){
-      ret.add(ticket)
-    }
-  }
-  return ret
-}
-
-def changeTicketStatus(ticket, status){
-  if(getTicketStatus() != status){
-    return false
-  } else{
-    changeTicketStatus(status)
-    return true
-  }
-}
-
-def getTicketStatus(){
-  // rest jira
-}
-
-def changeTicketStatus(status){
-  // rest to jira
-}
 def parseResponse(HttpURLConnection connection){             
   statusCode = connection.responseCode;           
   message = connection.responseMessage;            
@@ -36,34 +9,12 @@ def parseResponse(HttpURLConnection connection){
     println body
     return body        
   }else{               
-    this.failure = true;            
-    this.body = connection.getErrorStream().text;           
+    failure = true;            
+    body = connection.getErrorStream().text;       
+    println body 
   }         
 } 
-def URLConnection makeRequest(String method, String apiAddress, String accessToken, String mimeType, String requestBody) throws IOException {
-        URL url = new URL(apiAddress);
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-
-        urlConnection.setDoInput(true);
-        urlConnection.setDoOutput(!method.equals("GET"));
-        urlConnection.setRequestMethod(method);
-
-        urlConnection.setRequestProperty("Authorization", "Bearer " + accessToken);        
-
-        urlConnection.setRequestProperty("Content-Type", mimeType);
-        OutputStream outputStream = new BufferedOutputStream(urlConnection.getOutputStream());
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "utf-8"));
-        writer.write(requestBody);
-        writer.flush();
-        writer.close();
-        outputStream.close();            
-
-        urlConnection.connect();
-
-        return urlConnection;
-    }
-def getRelevantTicket(ticket){
-  def jsonSlurper = new JsonSlurper()
+def transitionTicket(ticket){
   ticket = "CRM-5369"
   j_user = 'automation@finovation.com'
   j_token = 'vHYY25Yx6lyhCe7Fswd11497'
@@ -75,7 +26,6 @@ def getRelevantTicket(ticket){
   HttpURLConnection con = (HttpURLConnection)url.openConnection();
   con.setRequestMethod("GET");
   con.setRequestProperty("Authorization", "Basic " + accessToken); 
-  con.setRequestProperty("Content-Type", "application/json; utf-8");
   con.setRequestProperty("Accept", "application/json");
   con.setDoOutput(true);
   con.connect();
@@ -84,18 +34,10 @@ def getRelevantTicket(ticket){
 def getTicketsFromFile(fp){
     return extractTickets(new File(fp).collect {it})
 }
-def getTicketsFolders(folders, filename){
-  res = []
-  folders.each{ fldr ->
-    fp = "${WORKSPACE}/${fldr}/${filename}"
-    res = res.plus(getTicketsFromFile(fp))
-  }
-  return res
-}
-def extractTickets(filelines){
+def extractTickets(list){
     res = []
     flag = true
-    for (line in filelines){
+    for (line in list){
         if(flag){
             if(line.startsWith('-')){
                 flag = false
@@ -131,18 +73,6 @@ node{
         pwd
         ls -al
         '''
-    sh '''
-     echo "
-## asd
-## asd
-- add-123 asdasdasd
-- add-143 fgshdfghk
-- add-153 yhnrtgbn
-- add-163 xdrtxdrt
-### bds
-- daa-123
-" > log
-    '''
     }
     dir("b"){
         git url:"https://github.com/StavBenSimchon/tes1.git" ,branch: 'main'
@@ -150,34 +80,15 @@ node{
         pwd
         ls -al
         '''
-    sh '''
-     echo "
-## asd
-## asd
-- addbbb-123 asdasdasd
-- addbbb-143 fgshdfghk
-- addbbb-153 yhnrtgbn
-- addbbb-163 xdrtxdrt
-### bds
-- daa-123
-" > log
-    '''
+        
     }
     sh '''
      ls -al
-     ls -al ./a
-     ls -al ./b
-
-     cat a/log
-     cat b/log
     '''
     // echo "$WORKSPACE"
     fp = "$WORKSPACE/log"
-    println getTicketsFromFile(fp)
-    folders = ["a", "b"]
-    filename = 'log'
-    println getTicketsFolders(folders,filename)
-    println getRelevantTicket("CRM-5369")
+    // println getTicketsFromFile(fp)
+    transitionTicket("")
     // def list = new File("$WORKSPACE/log").collect {it}
     // println list
     // tickets = grab_tickets(list)
