@@ -1,5 +1,4 @@
 import groovy.json.JsonSlurper
-YXV0b21hdGlvbkBmaW5vdmF0aW9uLmNvbTp2SFlZMjVZeDZseWhDZTdGc3dkMTE0OTcK
 j_user = 'automation@finovation.com'
 j_token = 'vHYY25Yx6lyhCe7Fswd11497'
 accessToken = "${j_user}:${j_token}".bytes.encodeBase64().toString()
