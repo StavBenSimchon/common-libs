@@ -3,8 +3,8 @@ import groovy.json.JsonSlurper
 def parseResponse(HttpURLConnection connection){             
       
 } 
-def makeRequest(String method, String url, String accessToken, String mimeType, String requestBody){
-  URL url = new URL (url);
+def makeRequest(String method, String apiAddress, String accessToken, String mimeType, String requestBody){
+  URL url = new URL (apiAddress);
   HttpURLConnection con = (HttpURLConnection)url.openConnection();
   con.setRequestMethod(method);
   con.setRequestProperty("Authorization", "Basic " + accessToken); 
