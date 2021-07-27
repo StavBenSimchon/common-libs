@@ -47,6 +47,7 @@ def makeRequest(String method, String apiAddress, String accessToken, String mim
         }
         println(response.toString());
     }catch (Exception e){
+      println e
       continue
     }
   }
