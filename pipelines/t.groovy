@@ -28,21 +28,6 @@ def makeRequest(String method, String apiAddress, String accessToken, String mim
   message = con.responseMessage;
   println  statusCode  
   println  message  
-  // if (json){
-  //     try {
-  //       BufferedReader br = new BufferedReader(
-  //       new InputStreamReader(con.getInputStream(), "utf-8"))
-  //       StringBuilder response = new StringBuilder();
-  //       String responseLine = null;
-  //       while ((responseLine = br.readLine()) != null) {
-  //           response.append(responseLine.trim());
-  //       }
-  //       println(response.toString());
-  //   }catch (Exception e){
-  //     println e
-  //     continue
-  //   }
-  // }
   failure = false;         
   if(statusCode == 200 || statusCode == 201){              
     body = con.content.text;   
