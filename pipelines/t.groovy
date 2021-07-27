@@ -34,8 +34,9 @@ def makeRequest(String method, String apiAddress, String accessToken, String mim
   println  statusCode  
   println  message  
   if (json){
-      try(BufferedReader br = new BufferedReader(
-      new InputStreamReader(con.getInputStream(), "utf-8"))) {
+      try {
+        BufferedReader br = new BufferedReader(
+        new InputStreamReader(con.getInputStream(), "utf-8"))
         StringBuilder response = new StringBuilder();
         String responseLine = null;
         while ((responseLine = br.readLine()) != null) {
