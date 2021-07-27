@@ -48,9 +48,7 @@ def makeRequest(String method, String apiAddress, String accessToken, String mim
     body = con.content.text;   
     // println body
     return new JsonSlurper().parseText(body)        
-  } else if (statusCode == 204){
-    continue
-  }else{               
+  } else if (statusCode == 204){}else{               
     failure = true;            
     body = con.getErrorStream().text;       
     // println body.fields
