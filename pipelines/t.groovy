@@ -17,7 +17,7 @@ def makeRequest(String method, String apiAddress, String accessToken, String mim
     con.setRequestProperty("Content-Type", mimeType);
     jsonInputString = JsonOutput.toJson(json)
     [transition:[id:integration_id]]
-    jsonInput = "{transition: {id: 61}}";
+    jsonInput = '{"transition": {"id": 61}}'
     // OutputStream os = con.getOutputStream();
     // OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");    
     // osw.write(json);
