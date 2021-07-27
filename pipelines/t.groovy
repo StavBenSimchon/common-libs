@@ -50,7 +50,6 @@ def makeRequest(String method, String apiAddress, String accessToken, String mim
       continue
     }
   }
-  }
   failure = false;         
   if(statusCode == 200 || statusCode == 201){              
     body = con.content.text;   
