@@ -18,46 +18,38 @@ def makeRequest(String method, String apiAddress, String accessToken, String mim
     jsonInputString = JsonOutput.toJson(json)
     [transition:[id:integration_id]]
     jsonInput = '{"transition": {"id": 61}}'
-    // OutputStream os = con.getOutputStream();
-    // OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");    
-    // osw.write(json);
-    // osw.flush();
-    // osw.close();
-    // os.close();
-
-    try {
-        OutputStream os = con.getOutputStream()
-        byte[] input = jsonInput.getBytes("utf-8");
-        os.write(input, 0, input.length);			
-    } catch (Exception e){
-      continue
-    }
+    OutputStream os = con.getOutputStream()
+    byte[] input = jsonInput.getBytes("utf-8");
+    os.write(input, 0, input.length);	
+    os.close();
   }
   con.connect();
   statusCode = con.responseCode;           
   message = con.responseMessage;
   println  statusCode  
   println  message  
-  if (json){
-      try {
-        BufferedReader br = new BufferedReader(
-        new InputStreamReader(con.getInputStream(), "utf-8"))
-        StringBuilder response = new StringBuilder();
-        String responseLine = null;
-        while ((responseLine = br.readLine()) != null) {
-            response.append(responseLine.trim());
-        }
-        println(response.toString());
-    }catch (Exception e){
-      println e
-      continue
-    }
-  }
+  // if (json){
+  //     try {
+  //       BufferedReader br = new BufferedReader(
+  //       new InputStreamReader(con.getInputStream(), "utf-8"))
+  //       StringBuilder response = new StringBuilder();
+  //       String responseLine = null;
+  //       while ((responseLine = br.readLine()) != null) {
+  //           response.append(responseLine.trim());
+  //       }
+  //       println(response.toString());
+  //   }catch (Exception e){
+  //     println e
+  //     continue
+  //   }
+  // }
   failure = false;         
   if(statusCode == 200 || statusCode == 201){              
     body = con.content.text;   
     // println body
     return new JsonSlurper().parseText(body)        
+  } else if (statusCode == 204){
+    continue
   }else{               
     failure = true;            
     body = con.getErrorStream().text;       
