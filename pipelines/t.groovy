@@ -23,10 +23,11 @@ def makeRequest(String method, String apiAddress, String accessToken, String mim
     osw.close();
     os.close();
 
-    try(OutputStream os = con.getOutputStream()) {
-    byte[] input = jsonInputString.getBytes("utf-8");
-    os.write(input, 0, input.length);			
-} 
+    try {
+        OutputStream os = con.getOutputStream()
+        byte[] input = jsonInputString.getBytes("utf-8");
+        os.write(input, 0, input.length);			
+    } 
   }
   con.connect();
   statusCode = con.responseCode;           
