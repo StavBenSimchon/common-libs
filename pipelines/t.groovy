@@ -27,7 +27,9 @@ def makeRequest(String method, String apiAddress, String accessToken, String mim
         OutputStream os = con.getOutputStream()
         byte[] input = jsonInputString.getBytes("utf-8");
         os.write(input, 0, input.length);			
-    } 
+    } catch (Exception e){
+      continue
+    }
   }
   con.connect();
   statusCode = con.responseCode;           
@@ -44,7 +46,10 @@ def makeRequest(String method, String apiAddress, String accessToken, String mim
             response.append(responseLine.trim());
         }
         println(response.toString());
+    }catch (Exception e){
+      continue
     }
+  }
   }
   failure = false;         
   if(statusCode == 200 || statusCode == 201){              
