@@ -19,7 +19,7 @@ def makeRequest(String method, String apiAddress, String accessToken, String mim
     [transition:[id:integration_id]]
     jsonInput = '{"transition": {"id": 61}}'
     OutputStream os = con.getOutputStream()
-    byte[] input = jsonInput.getBytes("utf-8");
+    byte[] input = jsonInputString.getBytes("utf-8");
     os.write(input, 0, input.length);	
     os.close();
   }
