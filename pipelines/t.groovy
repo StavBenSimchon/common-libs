@@ -15,20 +15,35 @@ def makeRequest(String method, String apiAddress, String accessToken, String mim
   // post
   if(json){
     con.setRequestProperty("Content-Type", mimeType);
-    json = JsonOutput.toJson(json)
+    jsonInputString = JsonOutput.toJson(json)
     OutputStream os = con.getOutputStream();
     OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");    
     osw.write(json);
     osw.flush();
     osw.close();
-    os.close(); 
+    os.close();
+
+    try(OutputStream os = con.getOutputStream()) {
+    byte[] input = jsonInputString.getBytes("utf-8");
+    os.write(input, 0, input.length);			
+} 
   }
   con.connect();
   statusCode = con.responseCode;           
   message = con.responseMessage;
   println  statusCode  
   println  message  
-  println con.getInputStream()
+  if (json){
+      try(BufferedReader br = new BufferedReader(
+      new InputStreamReader(con.getInputStream(), "utf-8"))) {
+        StringBuilder response = new StringBuilder();
+        String responseLine = null;
+        while ((responseLine = br.readLine()) != null) {
+            response.append(responseLine.trim());
+        }
+        println(response.toString());
+    }
+  }
   failure = false;         
   if(statusCode == 200 || statusCode == 201){              
     body = con.content.text;   
