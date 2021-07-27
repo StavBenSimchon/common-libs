@@ -51,6 +51,7 @@ def transitionTicket(ticket){
   status="IN QA"
   id = null
   integration_id = 61
+  println data
   data.transitions.each{ 
     if(it.name == status){
       println it.name 
