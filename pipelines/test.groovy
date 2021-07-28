@@ -5,4 +5,5 @@ def jc = new JiraClient(this)
 
 node {
   println jc
+  
 }

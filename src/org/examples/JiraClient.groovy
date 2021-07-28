@@ -4,10 +4,18 @@ import groovy.json.JsonSlurper
 
 class JiraClient implements Serializable{
   def steps
+  
   JiraClient(steps){
     this.steps = steps
+    this.baseUrl = "https://finovation.atlassian.net/rest/api"
   }
-  def makeRequest(String method, String apiAddress, String accessToken, String mimeType, json){
+
+  private urlBuilder(apiVersion, uri){
+    url = "${this.baseUrl}/${apiversion}/${uri}"
+    return url
+  }
+
+  private makeRequest(String method, String apiAddress, String accessToken, String mimeType, json){
     URL url = new URL (apiAddress);
     HttpURLConnection con = (HttpURLConnection)url.openConnection();
     con.setRequestMethod(method);
@@ -60,35 +68,35 @@ class JiraClient implements Serializable{
     // }   
   }
 
-  def changeTicketsStatus(tickets, status){
+  private changeTicketsStatus(tickets, status){
     ret = []
     tickets.each{ ticket ->
-      if (changeTicketStatus(ticket, status)){
+      if (this.changeTicketStatus(ticket, status)){
         ret.add(ticket)
       }
     }
     return ret
   }
 
-  def changeTicketStatus(ticket, status){
-    statusID = checkStatusExists(ticket, status)
+  private changeTicketStatus(ticket, status){
+    statusID = this.checkStatusExists(ticket, status)
     if (statusID){
-      transitionTicket(ticket, statusID)
+      this.transitionTicket(ticket, statusID)
       return true
     }else{
       return false
     }
   }
 
-  def transitionTicket(ticket, statusID){
+  private transitionTicket(ticket, statusID){
     dataObj = [transition:[id: statusID]]
-    url = "https://finovation.atlassian.net/rest/api/3/issue/${ticket}/transitions"
-    data = makeRequest("POST", url, accessToken, "application/json", dataObj)
+    url = this.urlBuilder(3, "issue/${ticket}/transitions")
+    data = this.makeRequest("POST", url, accessToken, "application/json", dataObj)
   }
 
-  def checkStatusExists(ticket, status){
-    url = "https://finovation.atlassian.net/rest/api/3/issue/${ticket}/transitions"
-    data = makeRequest("GET", url, accessToken, "application/json", null)
+  private checkStatusExists(ticket, status){
+    url = this.urlBuilder(3, "issue/${ticket}/transitions")
+    data = this.makeRequest("GET", url, accessToken, "application/json", null)
     data.transitions.each{ 
       if(it.name == status){
         return it.id
@@ -98,49 +106,8 @@ class JiraClient implements Serializable{
   }
 
   def getTicketStatus(ticket){
-    // rest jira
-    url = "https://finovation.atlassian.net/rest/api/2/issue/${ticket}?fields=status"
-    data = makeRequest("GET", url, accessToken, "application/json", "")
+    url = this.urlBuilder(2, "issue/${ticket}?fields=status")
+    data = this.makeRequest("GET", url, accessToken, "application/json", "")
     return data.fields.status.name
-  }
-
-  def relevantTicketsFilter(tickets, status){
-    ret = []
-    tickets.each{ ticket ->
-      if (getTicketStatus(ticket) == status){
-        ret.add(ticket)
-      }
-    }
-    return ret
-  }
-
-  def getTicketsFolders(folders, filename){
-    res = []
-    folders.each{ fldr ->
-      // fp = "${WORKSPACE}/${fldr}/${filename}"
-      fp = "${fldr}/${filename}"
-      res = res.plus(getTicketsFromFile(fp))
-    }
-    return res
-  }
-  def getTicketsFromFile(fp){
-      return extractTickets(new File(fp).collect {it})
-  }
-  def extractTickets(filelines){
-    res = []
-    flag = true
-    for (line in filelines){
-        if(!flag){
-        	break;
-        }
-        if(line.startsWith('-')){
-                ticket = line.substring(2).tokenize(' ')[0]
-                res.add(ticket)
-        }
-        if(res.size() == 0 && line.startsWith('#')){
-             	flag = false
-        }
-    }
-    return res
   }
 }
