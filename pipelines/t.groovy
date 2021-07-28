@@ -16,8 +16,6 @@ def makeRequest(String method, String apiAddress, String accessToken, String mim
   if(json){
     con.setRequestProperty("Content-Type", mimeType);
     jsonInputString = JsonOutput.toJson(json)
-    [transition:[id:integration_id]]
-    jsonInput = '{"transition": {"id": 61}}'
     OutputStream os = con.getOutputStream()
     byte[] input = jsonInputString.getBytes("utf-8");
     os.write(input, 0, input.length);	
@@ -31,12 +29,10 @@ def makeRequest(String method, String apiAddress, String accessToken, String mim
   failure = false;         
   if(statusCode == 200 || statusCode == 201){              
     body = con.content.text;   
-    // println body
     return new JsonSlurper().parseText(body)        
   } else if (statusCode == 204){}else{               
     failure = true;            
     body = con.getErrorStream().text;       
-    // println body.fields
   }   
 }
 

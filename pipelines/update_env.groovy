@@ -1,3 +1,5 @@
+@Library("ci@dev") _
+
 import groovy.json.JsonSlurper
 
 def changeTicketsStatus(tickets){

@@ -1,7 +1,7 @@
 package org.examples
 // @Grab('commons-net:commons-net:3.3')
 // this.getClass().classLoader.rootLoader.addURL(new File("lib/commons-net-3.3.jar").toURL())
-@Grab('org.yaml:snakeyaml')
+@Grab('org.yaml:snakeyaml:1.29')
 import org.yaml.snakeyaml.Yaml
 
 // @Grab('org.jenkins-ci.plugins:git:3.6.0')
