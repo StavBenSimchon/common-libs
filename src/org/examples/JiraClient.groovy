@@ -102,7 +102,7 @@ class JiraClient implements Serializable{
 
   def getTicketStatus(ticket){
     def uri ="issue/${ticket}?fields=status"
-    def apiVersion = "2"
+    def apiVersion = 2
     def url = "${this.baseUrl}/${apiVersion}/${uri}"
     this.steps.println url
 
