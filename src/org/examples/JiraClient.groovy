@@ -7,12 +7,12 @@ class JiraClient implements Serializable{
   def steps
   def baseUrl
   def accessToken
-  def jsonSlurper
+  // def jsonSlurper
   JiraClient(steps,accessToken){
     this.steps = steps
     this.baseUrl = "https://finovation.atlassian.net/rest/api"
     this.accessToken = accessToken
-    this.jsonSlurper = new JsonSlurper()
+    // this.jsonSlurper = new JsonSlurper()
     }
 
   def urlBuilder(apiVersion, uri){
