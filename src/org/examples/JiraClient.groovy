@@ -7,10 +7,12 @@ class JiraClient implements Serializable{
   def steps
   def baseUrl
   def accessToken
+  def jsonSlurper
   JiraClient(steps,accessToken){
     this.steps = steps
     this.baseUrl = "https://finovation.atlassian.net/rest/api"
     this.accessToken = accessToken
+    this.jsonSlurper = new JsonSlurper()
     }
 
   def urlBuilder(apiVersion, uri){
@@ -79,16 +81,18 @@ class JiraClient implements Serializable{
       return false
     }
   }
-
+  def convertStrinToMap(stringobj){
+    return 
+  }
   def transitionTicket(ticket, statusID){
     def dataObj = [transition:[id: statusID]]
     def url = this.urlBuilder(3, "issue/${ticket}/transitions")
-    def data = this.makeRequest("POST", url, this.accessToken, "application/json", dataObj)
+    def data = this.jsonSlurper.parseText(this.makeRequest("POST", url, this.accessToken, "application/json", dataObj))
   }
 
   def checkStatusExists(ticket, status){
     def url = this.urlBuilder(3, "issue/${ticket}/transitions")
-    def data = this.makeRequest("GET", url, this.accessToken, "application/json", null)
+    def data = this.jsonSlurper.parseText(this.makeRequest("GET", url, this.accessToken, "application/json", null))
     data.transitions.each{ 
       if(it.name == status){
         return it.id
@@ -99,7 +103,7 @@ class JiraClient implements Serializable{
 
   def getTicketStatus(ticket){
     def url = this.urlBuilder(2, "issue/${ticket}?fields=status")
-    def data = new JsonSlurper().parseText(this.makeRequest("GET", url, this.accessToken, "application/json", null))
+    def data = this.jsonSlurper.parseText(this.makeRequest("GET", url, this.accessToken, "application/json", null))
     return data.fields.status.name
   }
 }
