@@ -42,8 +42,7 @@ class JiraClient implements Serializable{
       String returnStr = "";
       switch(statusCode) {
         case [200, 201]:
-          def body = con.content.text;
-          returnStr=new JsonSlurper().parseText(body).toString();
+          returnStr = con.content.text;
           break;
         case 204:
           returnStr="true";
@@ -52,7 +51,6 @@ class JiraClient implements Serializable{
           returnStr = "Some default message or we can remove this default";
           break;
       }
-      this.steps.echo "here"
       return returnStr;
     } catch (Exception e) {
       throw e
@@ -101,8 +99,8 @@ class JiraClient implements Serializable{
 
   def getTicketStatus(ticket){
     def url = this.urlBuilder(2, "issue/${ticket}?fields=status")
-    def data = this.makeRequest("GET", url, this.accessToken, "application/json", null)
-    this.steps.println data["fields"]
+    def data = new JsonSlurper().parseText(this.makeRequest("GET", url, this.accessToken, "application/json", null))
+    this.steps.println data.fields.status.name
     return data.fields.status.name
   }
 }
