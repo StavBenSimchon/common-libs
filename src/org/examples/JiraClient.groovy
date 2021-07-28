@@ -29,7 +29,7 @@ class JiraClient implements Serializable{
     // post
     if(json){
       con.setRequestProperty("Content-Type", mimeType);
-      jsonInputString = JsonOutput.toJson(json)
+      def jsonInputString = JsonOutput.toJson(json)
       OutputStream os = con.getOutputStream()
       byte[] input = jsonInputString.getBytes("utf-8");
       os.write(input, 0, input.length);	
@@ -37,8 +37,8 @@ class JiraClient implements Serializable{
     }
     try {
       con.connect();
-      statusCode = con.responseCode;           
-      message = con.responseMessage;
+      def statusCode = con.responseCode;           
+      def message = con.responseMessage;
       String returnStr = "";
       switch(statusCode) {
         case [200, 201]:
