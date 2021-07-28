@@ -8,5 +8,7 @@ def jc = new JiraClient(this, accessToken)
 node {
   println jc
   t = "CRM-5213"
+  from_status = "Under Review"
   println jc.getTicketStatus(t)
+  println jc.relevantTicketsFilter([t],from_status)
 }
