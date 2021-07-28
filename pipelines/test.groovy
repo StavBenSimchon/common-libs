@@ -9,6 +9,8 @@ node {
   println jc
   t = "CRM-5213"
   from_status = "Under Review"
+  fake_status="Under sad"
   println jc.getTicketStatus(t)
   println jc.relevantTicketsFilter([t],from_status)
+  println jc.relevantTicketsFilter([t],fake_status)
 }
