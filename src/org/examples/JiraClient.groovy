@@ -97,7 +97,7 @@ class JiraClient implements Serializable{
     res = []
     folders.each{ fldr ->
       // fp = "${WORKSPACE}/${fldr}/${filename}"
-      fp = ""
+      fp = "${fldr}/${filename}"
       res = res.plus(getTicketsFromFile(fp))
     }
     return res
