@@ -23,20 +23,41 @@ class JiraClient implements Serializable{
       os.write(input, 0, input.length);	
       os.close();
     }
-    con.connect();
-    statusCode = con.responseCode;           
-    message = con.responseMessage;
-    failure = false;         
-    if(statusCode == 200 || statusCode == 201){              
-      body = con.content.text;   
-      return new JsonSlurper().parseText(body)        
-    } else if (statusCode == 204){
-      return true
-    }else{               
-      failure = true;            
-      body = con.getErrorStream().text;       
-      return body
-    }   
+    try {
+      con.connect();
+      statusCode = con.responseCode;           
+      message = con.responseMessage;
+      String returnStr = "";
+      switch(statusCode) {
+        case [200, 201]:
+              body = con.content.text;
+              returnStr=new JsonSlurper().parseText(body).toString();
+              break;
+        case 204:
+          returnStr="true";
+          break;
+        default:
+          returnStr = "Some default message or we can remove this default";
+          break;
+      }
+      return returnStr;
+    } catch (Exception e) {
+      return con.getErrorStream().text.toString();
+    } finally {
+      con.disconnect();
+    }
+
+    // failure = false;         
+    // if(statusCode == 200 || statusCode == 201){              
+    //   body = con.content.text;   
+    //   return new JsonSlurper().parseText(body)        
+    // } else if (statusCode == 204){
+    //   return true
+    // }else{               
+    //   failure = true;            
+    //   body = con.getErrorStream().text;       
+    //   return body
+    // }   
   }
 
   def changeTicketsStatus(tickets, status){
@@ -106,23 +127,20 @@ class JiraClient implements Serializable{
       return extractTickets(new File(fp).collect {it})
   }
   def extractTickets(filelines){
-      res = []
-      flag = true
-      for (line in filelines){
-          if(flag){
-              if(line.startsWith('-')){
-                  flag = false
-                  ticket = line.substring(2).tokenize(' ')[0]
-                  res.add(ticket)
-              }
-          } else {
-              if(line.startsWith('#')){
-                  break
-              }
-              ticket = line.substring(2).tokenize(' ')[0]
-              res.add(ticket)
-          }
-      }
-      return res
+    res = []
+    flag = true
+    for (line in filelines){
+        if(!flag){
+        	break;
+        }
+        if(line.startsWith('-')){
+                ticket = line.substring(2).tokenize(' ')[0]
+                res.add(ticket)
+        }
+        if(res.size() == 0 && line.startsWith('#')){
+             	flag = false
+        }
+    }
+    return res
   }
 }
