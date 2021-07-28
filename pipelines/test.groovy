@@ -7,10 +7,12 @@ def jc = new JiraClient(this, accessToken)
 
 node {
   println jc
-  t = "CRM-5213"
-  from_status = "Under Review"
-  fake_status="Under sad"
+  t = "CRM-4931"
+  from_status = "IN QA"
+  fake_status="Auasd asd"
+  to_status= "INTEGRATION"
   println jc.getTicketStatus(t)
   println jc.relevantTicketsFilter([t],from_status)
   println jc.relevantTicketsFilter([t],fake_status)
+  println jc.changeTicketsStatus([t],fake_status)
 }
