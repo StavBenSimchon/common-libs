@@ -4,7 +4,7 @@ import groovy.json.JsonSlurper
 
 class JiraClient implements Serializable{
   def steps
-  
+  def baseUrl
   JiraClient(steps){
     this.steps = steps
     this.baseUrl = "https://finovation.atlassian.net/rest/api"
