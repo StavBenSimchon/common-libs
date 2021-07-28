@@ -14,7 +14,8 @@ class JiraClient implements Serializable{
     }
 
   def urlBuilder(apiVersion, uri){
-    def url = "${this.baseUrl}/2/${uri}"
+    // def url = "${this.baseUrl}/${apiVersion}/${uri}"
+    def url = "https://finovation.atlassian.net/rest/api/2/issue/CRM-5213?fields=status"
     return url
   }
 
