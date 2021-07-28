@@ -14,7 +14,7 @@ class JiraClient implements Serializable{
     }
 
   private urlBuilder(apiVersion, uri){
-    url = "${this.baseUrl}/2/${uri}"
+    def url = "${this.baseUrl}/2/${uri}"
     return url
   }
 
@@ -60,7 +60,7 @@ class JiraClient implements Serializable{
   }
 
   private changeTicketsStatus(tickets, status){
-    ret = []
+    def ret = []
     tickets.each{ ticket ->
       if (this.changeTicketStatus(ticket, status)){
         ret.add(ticket)
@@ -70,7 +70,7 @@ class JiraClient implements Serializable{
   }
 
   private changeTicketStatus(ticket, status){
-    statusID = this.checkStatusExists(ticket, status)
+    def statusID = this.checkStatusExists(ticket, status)
     if (statusID){
       this.transitionTicket(ticket, statusID)
       return true
@@ -80,14 +80,14 @@ class JiraClient implements Serializable{
   }
 
   private transitionTicket(ticket, statusID){
-    dataObj = [transition:[id: statusID]]
-    url = this.urlBuilder(3, "issue/${ticket}/transitions")
-    data = this.makeRequest("POST", url, this.accessToken, "application/json", dataObj)
+    def dataObj = [transition:[id: statusID]]
+    def url = this.urlBuilder(3, "issue/${ticket}/transitions")
+    def data = this.makeRequest("POST", url, this.accessToken, "application/json", dataObj)
   }
 
   private checkStatusExists(ticket, status){
-    url = this.urlBuilder(3, "issue/${ticket}/transitions")
-    data = this.makeRequest("GET", url, this.accessToken, "application/json", null)
+    def url = this.urlBuilder(3, "issue/${ticket}/transitions")
+    def data = this.makeRequest("GET", url, this.accessToken, "application/json", null)
     data.transitions.each{ 
       if(it.name == status){
         return it.id
@@ -97,8 +97,8 @@ class JiraClient implements Serializable{
   }
 
   def getTicketStatus(ticket){
-    url = this.urlBuilder(2, "issue/${ticket}?fields=status")
-    data = this.makeRequest("GET", url, this.accessToken, "application/json", "")
+    def url = this.urlBuilder(2, "issue/${ticket}?fields=status")
+    def data = this.makeRequest("GET", url, this.accessToken, "application/json", "")
     return data.fields.status.name
   }
 }
