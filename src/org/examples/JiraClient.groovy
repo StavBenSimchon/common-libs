@@ -42,6 +42,7 @@ class JiraClient implements Serializable{
       String returnStr = "";
       switch(statusCode) {
         case [200, 201]:
+              this.steps.echo "here"
               body = con.content.text;
               returnStr=new JsonSlurper().parseText(body).toString();
               break;
@@ -99,7 +100,7 @@ class JiraClient implements Serializable{
 
   def getTicketStatus(ticket){
     def url = this.urlBuilder(2, "issue/${ticket}?fields=status")
-    def data = this.makeRequest("GET", url, this.accessToken, "application/json", "")
+    def data = this.makeRequest("GET", url, this.accessToken, "application/json", null)
     return data.fields.status.name
   }
 }
