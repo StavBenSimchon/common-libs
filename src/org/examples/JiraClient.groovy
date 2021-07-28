@@ -81,6 +81,16 @@ class JiraClient implements Serializable{
     }
   }
 
+  def relevantTicketsFilter(tickets, status){
+    def ret = []
+    tickets.each{ ticket ->
+      if (this.getTicketStatus(ticket) == status){
+        ret.add(ticket)
+      }
+    }
+    return ret
+  }
+  
   def transitionTicket(ticket, statusID){
     def dataObj = [transition:[id: statusID]]
     def url = this.urlBuilder(3, "issue/${ticket}/transitions")
