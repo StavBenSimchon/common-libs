@@ -55,6 +55,7 @@ class JiraClient implements Serializable{
       }
       return returnStr;
     } catch (Exception e) {
+      throw e
       return con.getErrorStream().text.toString();
     } finally {
       con.disconnect();
