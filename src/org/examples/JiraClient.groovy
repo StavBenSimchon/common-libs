@@ -104,10 +104,11 @@ class JiraClient implements Serializable{
     def uri ="issue/${ticket}?fields=status"
     def apiVersion = "2"
     def url = "${this.baseUrl}/${apiVersion}/${uri}"
-    
+    this.steps.println url
+
+
     def data = this.makeRequest("GET", url, this.accessToken, "application/json", null)
     def json = new JsonSlurper().parseText(data)
-    this.steps.println json.fields.status.name
     return json.fields.status.name
   }
 }
