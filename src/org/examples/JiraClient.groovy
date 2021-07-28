@@ -43,14 +43,14 @@ class JiraClient implements Serializable{
       switch(statusCode) {
         case [200, 201]:
               this.steps.echo "here"
-              body = con.content.text;
-              returnStr=new JsonSlurper().parseText(body).toString();
+              def body = con.content.text;
+              def returnStr=new JsonSlurper().parseText(body).toString();
               break;
         case 204:
-          returnStr="true";
+          def returnStr="true";
           break;
         default:
-          returnStr = "Some default message or we can remove this default";
+          def returnStr = "Some default message or we can remove this default";
           break;
       }
       return returnStr;
