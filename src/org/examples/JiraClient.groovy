@@ -7,12 +7,11 @@ class JiraClient implements Serializable{
   def steps
   def baseUrl
   def accessToken
-  def jsonSlurper
+
   JiraClient(steps,accessToken){
     this.steps = steps
     this.baseUrl = "https://finovation.atlassian.net/rest/api"
     this.accessToken = accessToken
-    this.jsonSlurper = new JsonSlurper()
     }
 
   def urlBuilder(apiVersion, uri){
@@ -81,9 +80,7 @@ class JiraClient implements Serializable{
       return false
     }
   }
-  def convertStrinToMap(stringobj){
-    return 
-  }
+
   def transitionTicket(ticket, statusID){
     def dataObj = [transition:[id: statusID]]
     def url = this.urlBuilder(3, "issue/${ticket}/transitions")
@@ -104,7 +101,7 @@ class JiraClient implements Serializable{
   def getTicketStatus(ticket){
     def url = this.urlBuilder(2, "issue/${ticket}?fields=status")
     def data = this.makeRequest("GET", url, this.accessToken, "application/json", null)
-    def json = this.jsonSlurper.parseText((String) data)
+    def json = new JsonSlurper().parseText(data)
     // this.steps.println data
     this.steps.println json
     return data.fields.status.name
