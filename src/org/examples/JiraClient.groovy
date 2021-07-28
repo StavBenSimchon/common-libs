@@ -85,12 +85,14 @@ class JiraClient implements Serializable{
     def dataObj = [transition:[id: statusID]]
     def url = this.urlBuilder(3, "issue/${ticket}/transitions")
     def data = this.jsonSlurper.parseText(this.makeRequest("POST", url, this.accessToken, "application/json", dataObj))
+    def json = new JsonSlurper().parseText(data)
   }
 
   def checkStatusExists(ticket, status){
     def url = this.urlBuilder(3, "issue/${ticket}/transitions")
     def data = this.jsonSlurper.parseText(this.makeRequest("GET", url, this.accessToken, "application/json", null))
-    data.transitions.each{ 
+    def json = new JsonSlurper().parseText(data)
+    json.transitions.each{ 
       if(it.name == status){
         return it.id
       }
@@ -99,11 +101,13 @@ class JiraClient implements Serializable{
   }
 
   def getTicketStatus(ticket){
-    def url = this.urlBuilder(2, "issue/${ticket}?fields=status")
+    def uri ="issue/${ticket}?fields=status"
+    def apiVersion = "2"
+    def url = "${this.baseUrl}/${apiVersion}/${uri}"
+    
     def data = this.makeRequest("GET", url, this.accessToken, "application/json", null)
     def json = new JsonSlurper().parseText(data)
-    // this.steps.println data
     this.steps.println json.fields.status.name
-    return data.fields.status.name
+    return json.fields.status.name
   }
 }
