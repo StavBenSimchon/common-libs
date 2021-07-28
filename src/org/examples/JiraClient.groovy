@@ -14,7 +14,7 @@ class JiraClient implements Serializable{
     }
 
   private urlBuilder(apiVersion, uri){
-    url = "${this.baseUrl}/${apiversion}/${uri}"
+    url = "${this.baseUrl}/2/${uri}"
     return url
   }
 
