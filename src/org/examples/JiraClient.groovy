@@ -13,12 +13,12 @@ class JiraClient implements Serializable{
     this.accessToken = accessToken
     }
 
-  private urlBuilder(apiVersion, uri){
+  def urlBuilder(apiVersion, uri){
     def url = "${this.baseUrl}/2/${uri}"
     return url
   }
 
-  private makeRequest(String method, String apiAddress, String accessToken, String mimeType, json){
+  def makeRequest(String method, String apiAddress, String accessToken, String mimeType, json){
     URL url = new URL (apiAddress);
     HttpURLConnection con = (HttpURLConnection)url.openConnection();
     con.setRequestMethod(method);
@@ -59,7 +59,7 @@ class JiraClient implements Serializable{
     }  
   }
 
-  private changeTicketsStatus(tickets, status){
+  def changeTicketsStatus(tickets, status){
     def ret = []
     tickets.each{ ticket ->
       if (this.changeTicketStatus(ticket, status)){
@@ -69,7 +69,7 @@ class JiraClient implements Serializable{
     return ret
   }
 
-  private changeTicketStatus(ticket, status){
+  def changeTicketStatus(ticket, status){
     def statusID = this.checkStatusExists(ticket, status)
     if (statusID){
       this.transitionTicket(ticket, statusID)
@@ -79,13 +79,13 @@ class JiraClient implements Serializable{
     }
   }
 
-  private transitionTicket(ticket, statusID){
+  def transitionTicket(ticket, statusID){
     def dataObj = [transition:[id: statusID]]
     def url = this.urlBuilder(3, "issue/${ticket}/transitions")
     def data = this.makeRequest("POST", url, this.accessToken, "application/json", dataObj)
   }
 
-  private checkStatusExists(ticket, status){
+  def checkStatusExists(ticket, status){
     def url = this.urlBuilder(3, "issue/${ticket}/transitions")
     def data = this.makeRequest("GET", url, this.accessToken, "application/json", null)
     data.transitions.each{ 
